@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="{{asset('css/ep.css')}}">
     <style>
     	.fondo_login{
-    		background-image: url('{{ asset('img/inventario_3.jpg') }}');
+    		/* background-image: url('{{ asset('img/inventario_3.jpg') }}'); */
+				background-color: #eee;
     		background-position: center center;
-	        background-size: 100%;
+	      background-size: 100%;
     	}
     </style>
   </head>
@@ -28,9 +29,9 @@
 			  <div class="login-box">
 			    <div class="login-logo">
 			      <center>
-			      	<img class="img-responsive" src="{{ asset('img/logo_login_2.png') }}" style="height:75px">
+			      	<img class="img-responsive" src="{{ asset('img/logo_login.png') }}" style="height:75px">
 			      </center>
-			      <small class="text-center texto_blanco" style="font-size: 22px;">{{ config('app.name') }}</small>
+			      <small class="text-center" style="font-size: 22px;">{{ config('app.name') }}</small>
 			    </div>
 			    <div class="login-box-body">
 			      <p class="login-box-msg">-Login-</p>
@@ -40,8 +41,8 @@
 			        	<ul>
 				          @foreach($errors->all() as $error)
 				             <li>{{$error}}</li>
-				          @endforeach	
-			         	</ul>  
+				          @endforeach
+			         	</ul>
 			        </div>
 			      @endif
 
@@ -63,21 +64,21 @@
 					  <div class="progress-bar progress-bar-striped active" role="progressbar"
 					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
 					  </div>
-					</div> 
-			      </form> 
+					</div>
+			      </form>
 			    </div><!-- /.login-box-body -->
 			  </div><!-- /.login-box -->
 		  </div>
 	  </div>
 
 	  <script type="text/javascript" src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
-	  
+
 	  <script>
 	  	$("#form_login").on("submit", function(){
 	  		$("#btn_login").text("Espere...").addClass("disabled");
 	  		$(".progress").fadeIn(400, "linear");
 	  	});
-	  </script>	
-	
+	  </script>
+
 	</body>
 </html>
