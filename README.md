@@ -1,2 +1,2 @@
 # inventariocb
-sistema de inventario para cohes de bebe _peru
+sistema de captacion de inmuebles desde peru a venezuela
