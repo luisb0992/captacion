@@ -13,46 +13,64 @@ class CreateEntrevistasTable extends Migration
 		 */
 		public function up()
 		{
-				Schema::create('entrevistas', function (Blueprint $table) {
+				Schema::create('prospectos', function (Blueprint $table) {
 						$table->increments('id');
+
+						$table->string('codigo')->nullable();
+						$table->string('titulo')->nullable();
+						$table->string('foto')->nullable();
+						$table->text('descripcion')->nullable();
+
 						$table->integer('user_id')->unsigned();
 						$table->foreign('user_id')
 						        ->references('id')
 								->on('users')
 								->onDelete('cascade');
 
-						$table->string('nombre');
-						$table->string('apellido');
-						$table->text('direccion')->nullable();
-						$table->string('email')->nullable();
-						$table->string('telefono')->nullable();
-						$table->string('contacto')->nullable();
-						
-						$table->integer('pais_id')->unsigned();
-						$table->foreign('pais_id')
-								->references('id')
-								->on('paises')
-								->onDelete('cascade');
-						
-						$table->string('distrito')->nullable();
-						$table->string('provincia')->nullable();
-						$table->string('tiempo_embarazo')->nullable();
-						$table->string('sexo_bebe')->nullable();
-						$table->string('tiempo_nacido')->nullable();
-						$table->string('fecha_nac')->nullable();
-
-						$table->integer('articulo_id')->unsigned();
-						$table->foreign('articulo_id')
+						$table->integer('tipo_id')->unsigned();
+						$table->foreign('tipo_id')
 						        ->references('id')
-								->on('articulos')
+								->on('tipos_inmuebles')
 								->onDelete('cascade');
+						
+						$table->integer('departamento_id')->unsigned()->nullable();
+            			$table->foreign('departamento_id')
+            			               ->references('id')
+                                       ->on('ubdepartamento')
+                                       ->onDelete('cascade');
+            			
+            			$table->integer('provincia_id')->unsigned()->nullable();
+            			$table->foreign('provincia_id')
+            			               ->references('id')
+                                       ->on('ubprovincia')
+                                       ->onDelete('cascade');
 
-						$table->string('precio_ref')->nullable();
-						$table->string('fecha')->nullable();
-						$table->string('hora')->nullable();
-						$table->integer('status')->unsigned();
-						$table->string('status_entre')->nullable();
-						$table->string('link')->nullable();      
+            			$table->integer('distrito_id')->unsigned()->nullable();
+            			$table->foreign('distrito_id')
+            			               ->references('id')
+                                       ->on('ubdistrito')
+                                       ->onDelete('cascade');
+
+						$table->string('antiguedad')->nullable();
+						$table->string('dormitorios')->nullable();
+						$table->string('estacionamientos')->nullable();
+						$table->string('b_completos')->nullable();
+						$table->string('b_medio')->nullable();
+						$table->string('precio_des')->nullable();
+						$table->string('precio_sol')->nullable();
+						$table->string('precio_dol')->nullable();
+						$table->string('metros_con')->nullable();
+						$table->string('metros_tot')->nullable();
+						$table->text('direccion')->nullable();
+						$table->text('codigo_postal')->nullable();
+						$table->string('opcion')->nullable();
+
+						$table->integer('status_id')->unsigned();
+						$table->foreign('status_id')
+            			               ->references('id')
+                                       ->on('status')
+                                       ->onDelete('cascade');
+
 						$table->timestamps();
 				});
 		}
@@ -64,6 +82,6 @@ class CreateEntrevistasTable extends Migration
 		 */
 		public function down()
 		{
-				Schema::dropIfExists('entrevistas');
+				Schema::dropIfExists('prospectos');
 		}
 }

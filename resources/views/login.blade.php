@@ -29,7 +29,7 @@
 			  <div class="login-box">
 			    <div class="login-logo">
 			      <center>
-			      	<img class="img-responsive" src="{{ asset('img/logo_login.png') }}" style="height:75px">
+			      	<img class="img-responsive" src="{{ asset('img/logo_login.png') }}" style="height:75px;">
 			      </center>
 			      <small class="text-center" style="font-size: 22px;">{{ config('app.name') }}</small>
 			    </div>
@@ -50,18 +50,18 @@
 			          {{ csrf_field() }}
 			        <div class="form-group has-feedback">
 			          <input  class="form-control" type="email" name="email" placeholder="Email">
-			          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			          <span class="glyphicon glyphicon-envelope form-control-feedback" style="color: red;"></span>
 			        </div>
 			        <div class="form-group has-feedback">
 			          <input id="password" class="form-control" type="password" name="password" placeholder="Password">
-			          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			          <span class="glyphicon glyphicon-lock form-control-feedback" style="color: red;"></span>
 			        </div>
 
 			        <div class="form-group">
-			            <button id="btn_login" type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+			            <button id="btn_login" type="submit" class="btn btn-danger btn-block">Entrar</button>
 			        </div>
 			         <div class="progress" style="display:none">
-					  <div class="progress-bar progress-bar-striped active" role="progressbar"
+					  <div class="progress-bar progress-bar-striped progress-bar-danger active" role="progressbar"
 					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
 					  </div>
 					</div>

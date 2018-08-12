@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComentariosTable extends Migration
+class CreateDistritosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateComentariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios', function (Blueprint $table) {
+        Schema::create('ubdistrito', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('comentario');
-            $table->integer('entrevista_id')->unsigned();
-			$table->foreign('entrevista_id')
-			        ->references('id')
-					->on('entrevistas')
-					->onDelete('cascade');
+            $table->string("distrito");
+            $table->integer("provincia_id")->unsigned();
+
+            $table->foreign('provincia_id')->references('id')
+                                       ->on('ubprovincia')
+                                       ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateComentariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('ubdistrito');
     }
 }

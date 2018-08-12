@@ -15,7 +15,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','apellido','password','perfil_id', 'email', 'status', 'clave'
+        'name','apellido','password','perfil_id', 'email', 'status', 
+        'clave', 'online', 'departamento_id', 'distrito_id', 'provincia_id'
     ];
 
     /**
@@ -47,7 +48,27 @@ class User extends Authenticatable
         return $status;
     }
 
-    public function countVentas($id){
-    	return Venta::whereMonth("created_at", date("m"))->where('user_id', $id)->groupBy("user_id");
+    public function dep(){
+      return $this->belongsTo("App\Departamento", "departamento_id");
+    }
+
+    public function prov(){
+      return $this->belongsTo("App\Provincia", "provincia_id");
+    }
+
+    public function dist(){
+      return $this->belongsTo("App\Distrito", "distrito_id");
+    }
+
+    public function departamento($id){
+      return Departamento::where("id", $id)->value("departamento");
+    }
+
+    public function provincia($id){
+      return Provincia::where("id", $id)->value("provincia");
+    }
+
+    public function distrito($id){
+      return Distrito::where("id", $id)->value("distrito");
     }
 }

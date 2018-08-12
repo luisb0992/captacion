@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Comentario;
+use App\Provincia;
 
-class ComentariosController extends Controller
+class ProvinciaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,12 +35,7 @@ class ComentariosController extends Controller
      */
     public function store(Request $request)
     {
-        $comentario = new Comentario();
-        $comentario->entrevista_id = $request->entrevista_id;
-        $comentario->comentario = $request->comentario;
-        $comentario->save();
-
-        return response()->json($comentario);
+        //
     }
 
     /**
@@ -86,5 +81,12 @@ class ComentariosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function busProv($id)
+    {
+        $prov = Provincia::where("departamento_id", $id)->get();
+
+        return response()->json($prov);
     }
 }

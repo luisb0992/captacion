@@ -17,9 +17,13 @@ class PerfilTableSeeder extends Seeder
   				'name' => 'admin',
   				'observacion' => 'administrador del sistema'),
   			array(
-  				'id' => '2',
-  				'name' => 'vendedor',
-  				'observacion' => 'empleado / vendedor de articulos')
+          'id' => '2',
+          'name' => 'usuario',
+          'observacion' => 'empleado'),
+        array(
+  				'id' => '3',
+  				'name' => 'futuro cliente',
+  				'observacion' => 'futuro cliente'),
   		);
 
   		\DB::table('perfiles')->insert($perfiles);

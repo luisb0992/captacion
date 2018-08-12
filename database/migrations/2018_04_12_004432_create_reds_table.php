@@ -16,10 +16,16 @@ class CreateRedsTable extends Migration
         Schema::create('redes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('link_f');
-            $table->string('fecha');
-            $table->string('hora');
-            $table->string('cantidad')->nullable();
+            $table->foreign('user_id')
+                        ->references('id')
+                        ->on('users')
+                        ->onDelete('cascade');
+
+            $table->string('link')->nullable();
+            $table->string('fecha')->nullable();
+            $table->string('hora')->nullable();
+            $table->string('cantidad_per')->nullable();
+            $table->string('numero_click')->nullable();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

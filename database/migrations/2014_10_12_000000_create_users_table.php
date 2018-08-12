@@ -24,6 +24,25 @@ class CreateUsersTable extends Migration
             $table->foreign('perfil_id')->references('id')->on('perfiles');
             $table->integer('status')->unsigned();
             $table->string('online')->nullable();
+
+            $table->integer('departamento_id')->unsigned()->nullable();
+            $table->foreign('departamento_id')
+                           ->references('id')
+                           ->on('ubdepartamento')
+                           ->onDelete('cascade');
+            
+            $table->integer('provincia_id')->unsigned()->nullable();
+            $table->foreign('provincia_id')
+                           ->references('id')
+                           ->on('ubprovincia')
+                           ->onDelete('cascade');
+
+            $table->integer('distrito_id')->unsigned()->nullable();
+            $table->foreign('distrito_id')
+                           ->references('id')
+                           ->on('ubdistrito')
+                           ->onDelete('cascade');
+            
             $table->rememberToken();
             $table->timestamps();
         });

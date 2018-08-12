@@ -31,6 +31,28 @@
 							<input id="email" class="form-control" type="mail" name="email" value="{{ old('email')?old('email'):'' }}" placeholder="Email" required>
 						</div>
 
+						<div class="form-group {{ $errors->has('departamento')?'has-error':'' }}">
+							<label class="control-label" for="departamento">Departamento: *</label>
+							<select class="form-control" name="departamento_id" id="dep" required>
+									<option value="">Seleccione</option>
+									@foreach($departamentos as $depart)
+									<option value="{{ $depart->id }}">{{ $depart->departamento }}</option>
+									@endforeach
+							</select>
+						</div>
+
+						<div class="form-group {{ $errors->has('provincia')?'has-error':'' }}">
+							<label class="control-label" for="provincia">Provincia: *</label>
+							<select class="form-control" name="provincia_id" id="prov" required>
+							</select>
+						</div>
+
+						<div class="form-group {{ $errors->has('distrito')?'has-error':'' }}">
+							<label class="control-label" for="distrito">Distrito: *</label>
+							<select class="form-control" name="distrito_id" id="dist" required>
+							</select>
+						</div>
+
 						<div class="form-group {{ $errors->has('password')?'has-error':'' }}">
 							<label class="control-label" for="password">Contraseña: <span class="span_rojo">*</span></label>
 							<input id="password" class="form-control" type="password" name="password" required>
@@ -63,14 +85,14 @@
 
 
 						@if (count($errors) > 0)
-		          <div class="alert alert-danger alert-important">
-			          <ul>
-			            @foreach($errors->all() as $error)
-			              <li>{{$error}}</li>
-			            @endforeach
-			          </ul>  
-		          </div>
-		        @endif
+				          <div class="alert alert-danger alert-important">
+					          <ul>
+					            @foreach($errors->all() as $error)
+					              <li>{{$error}}</li>
+					            @endforeach
+					          </ul>  
+				          </div>
+				        @endif
 
 						<div class="form-group text-right">
 							<a class="btn btn-flat btn-default" href="{{route('users.index')}}"><i class="fa fa-reply"></i> Atras</a>
@@ -79,4 +101,30 @@
 					</form>
 				</div>
 			</div>
+@endsection
+@section("script")
+<script>
+
+	// busqueda de provincias
+	$('#dep').change(function(event) {
+		$.get("../prov/"+event.target.value+"",function(response, dep){
+			$("#prov").empty();
+			$("#dist").empty();
+			for (i = 0; i<response.length; i++) {
+					$("#prov").append("<option value='"+response[i].id+"'> "+response[i].provincia+"</option>");
+			}
+		});
+	});
+
+	// busqueda de provincias
+	$('#prov').change(function(event) {
+		$.get("../dist/"+event.target.value+"",function(response, dep){
+			$("#dist").empty();
+			for (i = 0; i<response.length; i++) {
+					$("#dist").append("<option value='"+response[i].id+"'> "+response[i].distrito+"</option>");
+			}
+		});
+	});
+
+</script>
 @endsection

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Venta;
-use App\Entrevista;
-use App\Articulo;
-use App\User;
+use App\Prospecto;
+use App\Status;
+use App\Departamento;
+use App\Provincia;
+use App\Distrito;
+use App\TipoInmueble;
 
-class InventarioController extends Controller
+class ProspectosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,26 +18,16 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	
-    	$artMensualUno = Venta::whereMonth("created_at", date("m"))->where("status_id", 1)->get();
-    	$artMensualDos = Venta::whereMonth("created_at", date("m"))->where("status_id", 2)->get();
-    	$artMensualTres = Venta::whereMonth("created_at", date("m"))->where("status_id", 3)->get();
-    	$artMensualCuatro = Venta::whereMonth("created_at", date("m"))->where("status_id", 4)->get();
-    	$artMes = Venta::whereMonth("created_at", date("m"))->get()->groupBy('articulo_id');
+    {
+        if (\Auth::check()) {
+            $user = \Auth::user()->id;
+            $pros = Prospecto::where('user_id', $user)->get();
+        }else{
+            return view('login');
+        }
 
-        return view('inventario.index',[
-        	'articulos' => Articulo::all(),
-        	'entrevistas' => Entrevista::count(),
-        	'ventas' => Venta::count(),
-        	'users' => User::all(),
-        	'artMesUno' => $artMensualUno,
-        	'artMesDos' => $artMensualDos,
-        	'artMesTres' => $artMensualTres,
-        	'artMesCuatro' => $artMensualCuatro,
-            'artMes' => $artMes,
-            'usersUno' => User::where('status', 1)->count(),
-            'usersDos' => User::where('status', 2)->count(),
-        	'usersTres' => User::where('status', 3)->count()
+        return view("prospectos.index",[
+            "pros" => $pros
         ]);
     }
 
@@ -46,7 +38,11 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        //
+        return view("prospectos.create",[
+            "status" => Status::all(),
+            "tipos" => TipoInmueble::all(),
+            "departamentos" => Departamento::all()
+        ]);
     }
 
     /**

@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\User;
 use App\Perfil;
-use App\Entrevista;
-use App\Venta;
-use App\Grupo;
+use App\Prospecto;
 use App\Red;
+use App\Departamento;
 
 class UserController extends Controller
 {
@@ -34,7 +32,8 @@ class UserController extends Controller
     {
 
       return view("users.create",[
-          "perfiles" => Perfil::all()
+          "perfiles" => Perfil::all(),
+          "departamentos" => Departamento::all()
       ]);
     }
 
@@ -83,10 +82,8 @@ class UserController extends Controller
 
       return view("users.view", [
       		"user" => $user,
-      		"entrevista" => Entrevista::where('user_id', $id)->get(),
-      		"venta" => Venta::where('user_id', $id)->get(),
-      		"grupo" => Grupo::where('user_id', $id)->get(),
-      		"red" => Red::where('user_id', $id)->get()
+      		"prospectos" => Prospecto::where('user_id', $id)->get(),
+      		"redes" => Red::where('user_id', $id)->get()
       ]);
     }
 

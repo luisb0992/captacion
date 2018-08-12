@@ -21,6 +21,7 @@ Route::post('/logout', 'LoginController@logout')->name('logout');
 
 
 Route::group(['middleware' => 'auth'], function() { //middleware auth
+
   	/* ---- Ruta para llamar al dashboard, modificarla si es necesario ----- */
 	Route::get('dashboard', 'LoginController@index')->name('dashboard');
 
@@ -28,50 +29,17 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	Route::resource('/users','UserController',["middleware" => 'rol_admin']);
 
 	/* --- Grupos ---*/
-	Route::resource('grupos','GruposController',["middleware" => 'rol_admin']);
-	Route::get('mostrar', 'GruposController@mostrar');
-
 	Route::resource('redes','RedesController');
 
-	// entrevistas
-	Route::resource('entrevistas','EntrevistasController');
-	Route::get('cargarEntrevistas/{id}', 'EntrevistasController@show');
-	Route::get('cargarEntrevistaOne/{id}', 'EntrevistasController@show_id');
-	Route::get('eliminarEntrevista/{id}', 'EntrevistasController@eliminar');
-	Route::get('entrevistasReporte', 'EntrevistasController@entrevistasReporte')->name("entrevistasReporte");
-	Route::post('prospectosExcel', 'EntrevistasController@entrevistasExcel')->name("entrevistasExcel");
+	// prospectos
+	Route::resource('prospectos','ProspectosController');
 
-	// PDF entrevistas
-	Route::get('pdf_entrevistas/{id}', 'EntrevistasController@pdf');
-
-	// articulos
-	Route::resource('articulos','ArticulosController');
-	Route::get('editarImagen/{id}','ArticulosController@editImagen');
-	Route::put('updateImagen/{id}','ArticulosController@updateImagen');
-
-	// modelos
-	Route::resource('modelos','ModelosController');
-	Route::post('guardarModelos', 'ModelosController@store');
-	Route::get('cargarModelos', 'ModelosController@create');
-
-	// colores
-	Route::resource('colores','ColoresController');
-	Route::post('guardarColores', 'ColoresController@store');
-	Route::get('cargarColores', 'ColoresController@create');
-
-	// ventas
-	Route::resource('ventas','VentasController');
-	Route::get('vender/{id}', 'VentasController@venta');
-	Route::post('pdf_venta/{id}', 'VentasController@pdf');
-	Route::get('ReporteVentas', 'VentasController@ventasReporte')->name("ventasReporte");
-	Route::post('ventasExcel', 'VentasController@ventasExcel')->name("ventasExcel");
-
-	// comentarios
-	Route::resource('comentario','ComentariosController');
-	Route::post('guardarComentario', 'ComentariosController@store');
-
-	// inventario
-	Route::resource('inventario','InventarioController');
+	//departamentos, provincias y distritos
+	Route::resource('departamentos','DepartamentoController');
+	Route::resource('provincias','ProvinciaController');
+	Route::resource('distritos','DistritoController');
+	Route::get('prov/{id}','ProvinciaController@busProv');
+	Route::get('dist/{id}','DistritoController@busDist');
 
 	//* --- Perfil --- */
 	Route::get('/perfil', 'UserController@perfil')->name('perfil');

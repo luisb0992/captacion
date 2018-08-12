@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Modelo;
+use App\Distrito;
 
-class ModelosController extends Controller
+class DistritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,8 +24,7 @@ class ModelosController extends Controller
      */
     public function create()
     {
-        $modelos = Modelo::orderBy("id", "DESC")->get();
-        return response()->json($modelos);
+        //
     }
 
     /**
@@ -36,15 +35,7 @@ class ModelosController extends Controller
      */
     public function store(Request $request)
     {
-        $buscar = Modelo::where('name','=', $request->name)->count();
-        if ($buscar <= 0) {
-            $modelos = new Modelo;
-            $modelos->name = $request->name;
-            $modelos->save();
-            return response()->json($modelos);
-         }else{
-            return response()->json(["count" => $buscar]);
-        }
+        //
     }
 
     /**
@@ -90,5 +81,12 @@ class ModelosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function busDist($id)
+    {
+        $distritos = Distrito::where("provincia_id", $id)->get();
+
+        return response()->json($distritos);
     }
 }

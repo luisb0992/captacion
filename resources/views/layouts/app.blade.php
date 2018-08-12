@@ -46,7 +46,7 @@
 			}
 	  </style>
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
@@ -54,10 +54,10 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
           	<!-- <img class="img-responsive" src="{{ asset('img/logo_blanco.png') }}" alt="Logo" style="height:30px;margin:10px 0 0 10px"> -->
-            ICB
+            IP
           </span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Coches Bebes</b></span>
+          <span class="logo-lg"><b>Inmuebles Peru</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -73,7 +73,7 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                  <span class="">{{ Auth::user()->name }} &nbsp;&nbsp;</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -110,7 +110,6 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
 
-            @if(\Auth::user()->perfil_id == 1)
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
@@ -120,75 +119,51 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Ver usuarios</a></li>
                 <li><a href="{{ route('users.create') }}"><i class="fa fa-circle-o"></i>Agregar usuario</a></li>
-                <li><a href="{{ route('grupos.index') }}"><i class="fa fa-circle-o"></i>Contraseñas</a></li>
                 <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Grupos</a></li>
               </ul>
             </li>
 
-
-            <!-- articulos -->
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Articulos</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url('articulos') }}"><i class="fa fa-circle-o"></i> Ver articulos</a></li>
-                <li><a href="{{ url('articulos/create') }}"><i class="fa fa-circle-o"></i> Nuevo articulo</a></li>
-              </ul>
-            </li>
-
-            <!-- entrevistas -->
+            <!-- Prospectos -->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Prospecto De Ventas</span>
+                <span>Prospecto</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{ url('entrevistas/create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
-                <li><a href="{{ url('entrevistas') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
-                <li><a href="{{ url('entrevistasReporte') }}"><i class="fa fa-circle-o"></i> Reporte</a></li>
+                <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
+                <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li>
               </ul>
             </li>
 
-            <!-- Ventas -->
+            <!-- requerimiento -->
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-check-circle-o"></i>
-                <span>Ventas</span>
+                <i class="fa fa-list-alt"></i>
+                <span>Requerimientos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{ url('ventas') }}"><i class="fa fa-circle-o"></i> Ver ventas</a></li>
-                <li><a href="{{ route('ventasReporte') }}"><i class="fa fa-circle-o"></i> Reporte</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Nuevo rquerimiento</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Ver requerimientos</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li>
               </ul>
             </li>
 
-            <!-- Ventas -->
+            <!-- futuros clientes -->
             <li class="treeview">
-              <a href="{{ url('inventario') }}">
-                <i class="fa fa-list-ul"></i>
-                <span>Inventario</span>
+              <a href="#">
+                <i class="fa fa-list-alt"></i>
+                <span>Futuros clientes</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
+              <ul class="treeview-menu">
+                <li><a href=""><i class="fa fa-circle-o"></i> Listado</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li>
+              </ul>
             </li>
-            @else
-              <!-- entrevistas -->
-              <li class="treeview">
-                <a href="#">
-                  <i class="fa fa-list-alt"></i>
-                  <span>Prospecto De Ventas</span>
-                  <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="{{ url('entrevistas') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
-                  <li><a href="{{ url('entrevistas/create') }}"><i class="fa fa-circle-o"></i> Nueva Prospecto</a></li>
-                </ul>
-              </li>
-              <li><a href="{{ url('mostrar') }}"><i class="fa fa-group"></i>Mis Grupos</a></li>
-              <li><a href="{{ route('redes.index') }}"><i class="fa fa-soundcloud"></i>Redes Sociales</a></li>
-            @endif
+
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -211,7 +186,7 @@
       </div><!-- /.content-wrapper -->
       <!--Fin-Contenido-->
       <footer class="main-footer">
-        <strong>Copyright &copy; 2016-{{date('Y')}} Littlebru.com C.A.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016-{{date('Y')}} </strong> All rights reserved.
       </footer>
     </div><!-- .wrapper <-->
     <!-- jQuery 2.1.4 -->

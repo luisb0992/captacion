@@ -17,10 +17,7 @@ class UnidadTableSeeder extends Seeder
 			  				'name' => 'SOLES'),
 			  			array(
 			  				'id' => '2',
-			  				'name' => 'USD'),
-			  			array(
-			  				'id' => '3',
-			  				'name' => 'EUR')
+			  				'name' => 'USD')
 			  		);
 
   		\DB::table('unidades')->insert($unidades);
