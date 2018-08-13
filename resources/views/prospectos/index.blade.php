@@ -9,10 +9,6 @@
 @endsection
 @section('content')
 	@include('partials.flash')
-
-	<a href="{{ url('cargarEntrevistas') }}" class="hidden" id="ruta_ver_entrevistas"></a>
-	<a href="{{ url('cargarEntrevistaOne') }}" class="hidden" id="ruta_ver_entrevista_one"></a>
-	<a href="{{ url('guardarComentario') }}" id="ruta_crear_comentario" class="hide"></a>
 	<!-- Info boxes -->
   <div class="row">
   	<div class="col-md-3 col-sm-6 col-xs-12">
@@ -54,7 +50,7 @@
 								<th class="text-center">Tipo propiedad</th>
 								<th class="text-center">localidad</th>
 								<th class="text-center">Precio</th>
-								<th class="text-center">Metros</th>
+								<th class="text-center">Metros Tot</th>
 								<th class="text-center">Opcion</th>
 								<th class="text-center">Status</th>
 								<th class="text-center">Descargar</th>
@@ -66,32 +62,40 @@
 								<tr>
 									<td>{{$t->titulo}}</td>
 									<td>{{$t->tipo->name}}</td>
-									<td>{{$t->distrito->distrito}}</td>
+									<td>{{$t->departamento->departamento}}, {{$t->provincia->provincia}}, {{$t->distrito->distrito}}</td>
 									<td>
 										<span class="text-capitalize text-left">{{ $t->precio_des }}</span>
 										<br>
-										<span>{{ $t->precio_sol }} - {{ $t->precio_dol }}</span>
+										<span class="text-danger">{{ $t->precio_sol.' sol' }}</span> <span class="text-primary">@if($t->precio_dol) - {{ $t->precio_dol.' $' }} @endif</span>
 									</td>
 									<td>
-										<span>{{ $t->metros_con }} - {{ $t->metros_tot }}</span>
+										<span>{{ $t->metros_tot }}</span>
 									</td>
 									<td>{{ $t->opcion }}</td>
 									<td class="well">{{ $t->status->name }}</td>
 									<td>
-										<form action="" method="GET">
+										<form action="{{ route('p_pdf',$t->id ) }}" method="GET">
 											{{ csrf_field() }}
-											<button type="submit" class="btn btn-danger btn-sm" id="imprimir" name="id">
+											<button type="submit" class="btn btn-danger btn-sm">
 												<i class="fa fa-file-pdf-o"></i> PDF
 											</button>
 										</form>
 									</td>
 									<td>
-										<button type="button" class="btn btn-primary btn-flat btn-sm" data-toggle="modal" data-target="#ver_entrevistas" id="btn_ver_entrevistas" value="{{ $t->id }}" onclick="cargarEntrevistas(this);">
+										@if($t->foto)
+											<a href="{{ url("img/$t->id.$t->foto") }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
+												<i class="fa fa-image"></i> Foto
+											</a>
+										@else
+											<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
+												<i class="fa fa-image"></i> Foto
+											</a>
+										@endif
+										<a href="{{ route('prospectos.edit', $t->id) }}" class="btn btn-primary btn-sm">
 			                    			<i class="fa fa-eye"></i> Ver y editar
-			                    		</button>
-
+			                    		</a>
 			                    		@if(\Auth::user()->perfil_id == 1)
-										<a href="" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');"><i class="fa fa-remove"></i> Eliminar</a>
+										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');"><i class="fa fa-remove"></i> Eliminar</a>
 										@endif 
 									</td>
 								</tr>
@@ -104,5 +108,10 @@
 	</div>
 @endsection
 @section('script')
-	<script src="{{ asset('js/entrevistas.js') }}"></script>
+<script>
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+</script>
 @endsection

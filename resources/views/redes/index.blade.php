@@ -40,8 +40,8 @@
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $red->user->name }} {{ $red->user->apellido }}</td>
 									<td>
-										<a href="{{ $red->link_f }}" target="blank" class="btn btn-link">
-											<i class="fa fa-hand-o-up"></i> {{ $red->link_f }}
+										<a href="{{ $red->link }}" target="blank" class="btn btn-link" id="link">
+											<i class="fa fa-hand-o-up"></i> {{ $red->link }}
 										</a>
 									</td>
 									<td>{{ $red->fecha }}</td>
@@ -56,4 +56,31 @@
 			</div>
 		</div>
 	</div>
+@endsection
+@section("scripts")
+<script>
+	$("#link").click(function(e){
+
+		// e.preventDefault();
+		var token = $("#token").val();
+		var ruta = $('#ruta_crear_comentario').attr('href');
+
+		$.ajax({
+			url: ruta,
+			headers: {'X-CSRF-TOKEN': token},
+			type: 'POST',
+			dataType: 'JSON',
+			data: {comentario: $("#comentario").val(), entrevista_id: $("#id_entre").val()},
+		})
+		.done(function(data) {
+
+		})
+		.fail(function(data) {
+		
+		})
+		.always(function() {
+			console.log("complete");
+		});
+  	});
+</script>
 @endsection

@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Prospecto - '.config('app.name'))
-@section('header','Prospecto')
+@section('title','Requerimiento - '.config('app.name'))
+@section('header','Requerimiento')
 @section('breadcrumb')
 	<ol class="breadcrumb">
 	  <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
-	  <li><a href="{{route('prospectos.index')}}" title="Entrevistas"> Prospectos</a></li>
+	  <li><a href="{{route('req.index')}}" title="Entrevistas"> Requerimiento</a></li>
 	  <li class="active">Agregar</li>
 	</ol>
 @endsection
@@ -12,7 +12,7 @@
 		<!-- Formulario -->
 		<div class="fondo_blanco">
 			<div class="row padding_1em">
-				<form class="" action="{{ route('prospectos.store') }}" method="POST" enctype="multipart/form-data">
+				<form class="" action="{{ route('req.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					
 					<!-- datos personales -->
@@ -85,39 +85,38 @@
 						<br>
 					</div>
 
-					<div class="col-sm-12">
-						<section class="padding_1em bg-danger">
-							<span class="h5">Dimensiones</span>
-						</section>
-						<br>
-					</div>
-
-					<div class="col-sm-4">
-						<label for="nombre">M2 Construidos<span class="span_rojo">*</span></label>
-						<input type="text" name="metros_con" class="form-control int" required="">
-					</div>
-
 					<div class="col-sm-4">
 						<label for="nombre">M2 Totales<span class="span_rojo">*</span></label>
-						<input type="text" name="metros_tot" class="form-control int" required="">
+						<input type="text" name="metros_cua" class="form-control int" required="">
 						<br>
 					</div>
-					
+
+					<div class="col-sm-4 well well-sm">
+						<label class="control-label" for="departamento">Presupuesto: *</label>
+						<br>
+						<div class="col-sm-5">
+							<input type="text" class="form-control int" name="pre1" required="">
+						</div>
+						<div class="col-sm-2">
+							<span><b>Entre</b></span>
+						</div>
+						<div class="col-sm-5">
+							<input type="text" class="form-control int" name="pre2" required="">
+						</div>
+					</div>
+
+					<div class="col-sm-4 text-left">
+						<label class="control-label" for="">unidad: *</label>
+						<select class="form-control" name="unidad_id" required>
+							@foreach($unidades as $u)
+							<option value="{{ $u->id }}">{{ $u->name }}</option>
+							@endforeach
+						</select>
+					</div>
+
 					<div class="col-sm-12">
-						<section class="padding_1em bg-danger">
-							<span class="h5">Localizacion</span>
-						</section>
-						<br>
-					</div>
-
-					<div class="col-sm-4">
-						<label for="nombre">Direccion<span class="span_rojo">*</span></label>
-						<input type="text" name="direccion" class="form-control" required="">
-					</div>
-
-					<div class="col-sm-4">
-						<label for="nombre">Codigo postal<span class="span_rojo">*</span></label>
-						<input type="text" name="codigo_postal" class="form-control int" required="">
+						<label class="control-label" for="departamento">Referencia: *</label>
+						<input type="text" class="form-control" name="referencia" required="">
 						<br>
 					</div>
 
@@ -148,59 +147,6 @@
 						<label class="control-label" for="distrito">Distrito: *</label>
 						<select class="form-control" name="distrito_id" id="dist" required>
 						</select>
-						<br>
-					</div>
-
-					<div class="col-sm-12">
-						<section class="padding_1em bg-danger">
-							<span class="h5">Precio</span>
-						</section>
-						<br>
-					</div>
-
-					<div class="col-sm-4">
-						<label class="control-label" for="departamento">Anuncio: *</label>
-						<select class="form-control" name="precio_des" required>
-							<option value="Anunciar para vender">Anunciar para vender</option>
-							<option value="Anunciar para alquilar">Anunciar para alquilar</option>
-							<option value="Anunciar para temporada">Anunciar para temporada</option>
-							<option value="Anunciar para traspaso">Anunciar para traspaso</option>
-						</select>
-					</div>
-
-					<div class="col-sm-4">
-						<label class="control-label" for="departamento">Precio soles: *</label>
-						<input type="text" class="form-control int" name="precio_sol" required="">
-					</div>
-
-					<div class="col-sm-4">
-						<label class="control-label" for="departamento">Precio dolar: </label>
-						<input type="text" class="form-control int" name="precio_dol">
-						<br>
-					</div>
-
-					<!-- datos personales -->
-					<div class="col-sm-12">
-						<section class="padding_1em label-danger">
-							<span class="h4">Datos Publicidad</span>
-						</section>
-						<br>
-					</div>
-
-					<div class="col-sm-12">
-						<label for="nombre">Titulo<span class="span_rojo">*</span></label>
-						<input type="text" name="titulo" class="form-control" required="" placeholder="ej: Departamento de lujo, unico dueño">
-						<br>
-					</div>
-
-					<div class="col-sm-6">
-						<label for="nombre">Foto<span class="span_rojo">*</span></label>
-						<input id="file_input" type="file" class="file" data-preview-file-type="text" name="imagen">
-					</div>
-
-					<div class="col-sm-6">
-						<label for="nombre">Descripcion<span class="span_rojo">*</span></label>
-						<textarea name="descripcion" class="form-control"></textarea>
 						<br>
 					</div>
 
@@ -239,12 +185,17 @@
 
 					<div class="col-sm-4">
 						<label for="nombre">Status<span class="span_rojo">*</span></label>	
-						<select name="status_id" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@foreach($status as $sta)
-							<option value="{{ $sta->id }}">{{ $sta->name }}</option>
-							@endforeach
+						<select name="status" class="form-control" required="">
+							<option value="caliente">Caliente</option>
+							<option value="tibio">Tibio</option>
+							<option value="congelado">Congelado</option>
+							<option value="frio">Frio</option>
 						</select>
+					</div>
+
+					<div class="col-sm-4">
+						<label for="nombre">Comentario</label>	
+						<textarea name="comentario" class="form-control" cols="30" rows="5"></textarea>
 					</div>
 
 					@if (count($errors) > 0)

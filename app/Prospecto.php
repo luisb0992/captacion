@@ -40,6 +40,6 @@ class Prospecto extends Model
     }
 
     public function persona(){
-    	return $this->hasOne("App\Persona", "persona_id");
+    	return $this->hasOne("App\Persona", "prospecto_id");
     }
 }

@@ -119,7 +119,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Ver usuarios</a></li>
                 <li><a href="{{ route('users.create') }}"><i class="fa fa-circle-o"></i>Agregar usuario</a></li>
-                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Grupos</a></li>
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Redes Sociales</a></li>
               </ul>
             </li>
 
@@ -133,7 +133,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
                 <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li>
+                <!-- <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li> -->
               </ul>
             </li>
 
@@ -145,9 +145,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Nuevo rquerimiento</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Ver requerimientos</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li>
+                <li><a href="{{ route('req.create') }}"><i class="fa fa-circle-o"></i> Nuevo requerimiento</a></li>
+                <li><a href="{{ route('req.index') }}"><i class="fa fa-circle-o"></i> Ver requerimientos</a></li>
+                <!-- <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li> -->
               </ul>
             </li>
 
@@ -311,6 +311,9 @@
           return date;
         }
       } );
+
+      $('.numero').numeric();
+      $(".int").numeric({ decimal: false, negative: false }, function() { alert("Solo numeros"); this.value = ""; this.focus(); });
 
     </script>
 

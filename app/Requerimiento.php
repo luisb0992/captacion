@@ -34,7 +34,15 @@ class Requerimiento extends Model
     	return $this->belongsTo("App\Distrito", "distrito_id");
     }
 
-    public function unidad_id(){
+    public function unidad(){
     	return $this->belongsTo("App\Unidad", "unidad_id");
+    }
+
+    public function persona(){
+        return $this->hasOne("App\Persona", "requerimiento_id");
+    }
+
+    public function per($id){
+        return Persona::where("requerimiento_id", $id)->first();
     }
 }

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PDF Pacto de venta</title>
+        <title>PDF reporte inmueble</title>
        	<style>
 
 html {
@@ -8326,40 +8326,51 @@ button.close {
             <div class="row">
                 <div class="col-sm-12">
                 	<h1 class="page-header text-center" style="border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
-                		<span class="text-capitalize">Littlebru.com</span> 
-                	</h1>
-                	<small>
-                		<em>Entrevista realizada por <b>{{ $entrevista->vendedor->name }} {{ $entrevista->vendedor->apellido }}</b></em>
-                	</small>
+                    <span class="text-capitalize">{{ $pro->titulo }}</span> 
+                  </h1>
+                  <p class="h3">Codigo <span class="text-capitalize text-danger">{{ $pro->codigo }}</span></p>   
+                  <p>
+                    <span class="">Direccion: {{ $pro->direccion }},</span>
+                    <span class="">{{ $pro->departamento->departamento }} / {{ $pro->provincia->provincia }} / {{ $pro->distrito->distrito }}</span>
+                    <br>
+                    <span class="text-capitalize">Codigo Postal: {{ $pro->codigo_postal }}</span>
+                  </p> 
+                  <p>
+                    <span class="text-left">
+                      <b>Nombre: {{ $pro->persona->name }} / Telf: {{ $pro->persona->telefono }}</b>
+                    </span>
+                    <br>
+                    <b>
+                    <span class="text-left">Precio: {{ $pro->precio_des }} <span class="glyphicon glyphicon-arrow-right"></span>  
+                      <span class="text-danger">{{ $pro->precio_sol.' sol' }}</span> 
+                      <span class="text-primary">@if($pro->precio_dol) - {{ $pro->precio_dol.' $' }} @endif</span>
+                    </span>
+                    </b>
+                  </p>
+                  <p></p>
 				    <table class="table table-bordered">
 				        <thead class="well">
 				            <tr>
-				                <th>Nombre</th>
-				                <th>Apellido</th>
-				                <th>Email</th>
-				                <th>Telefono</th>
-				                <th>Contacto</th>
-				                <th>Pais</th>
-				                <th>Distrito</th>
-				                <th>Provincia</th>
-				                <th>Articulo</th>
-				                <th>Fecha</th>
-				                <th>Hora</th>
-				            </tr>                            
+				                <th>Tipo</th>
+				                <th>Antiguedad</th>
+				                <th>Dormitorios</th>
+				                <th>Estacionamientos</th>
+                        <th>Baños</th>
+                        <th>Metros tot</th>
+				                <th>Opcion</th>
+				                <th>Status</th>
+                    </tr>                            
 				        </thead>
 				        <tbody>
 				            <tr>
-				            	<td>{{ $entrevista->nombre }}</td>
-				            	<td>{{ $entrevista->apellido }}</td>
-				            	<td>{{ $entrevista->email }}</td>
-				            	<td>{{ $entrevista->telefono }}</td>
-				            	<td>{{ $entrevista->contacto }}</td>
-				            	<td>{{ $entrevista->pais->name }}</td>
-				            	<td>{{ $entrevista->distrito }}</td>
-				            	<td>{{ $entrevista->provincia }}</td>
-				            	<td>{{ $entrevista->articulo->name }}</td>
-				            	<td>{{ $entrevista->fecha }}</td>
-				            	<td>{{ $entrevista->hora }}</td>
+				            	<td>{{ $pro->tipo->name }}</td>
+				            	<td>{{ $pro->antiguedad }}</td>
+				            	<td>{{ $pro->dormitorios }}</td>
+				            	<td>{{ $pro->estacionamientos }}</td>
+				            	<td>Completos {{ $pro->b_completos }} <br> Medio {{ $pro->b_medio }}</td>
+				            	<td>Totales {{ $pro->metros_tot }} <br> Construidos {{ $pro->metros_con }}</td>
+				            	<td>{{ $pro->opcion }}</td>
+				            	<td>{{ $pro->status->name }}</td>
 				            </tr>
 				        </tbody>
 				    </table>

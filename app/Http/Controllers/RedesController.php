@@ -45,7 +45,7 @@ class RedesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'link_f' =>'required|unique:redes'
+            'link' =>'required|unique:redes'
         ]);
 
         $red = new Red();

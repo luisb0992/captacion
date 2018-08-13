@@ -11,7 +11,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label>Link de Facebook</label>
-							<input type="text" name="link_f" class="form-control" required="">
+							<input type="text" name="link" class="form-control" required="">
 						</div>
 						<div class="form-group">
 							<label>Fecha de Creacion</label>
@@ -23,7 +23,7 @@
 						</div>
 						<div class="form-group">
 							<label>Cantidad de personas</label>
-							<input type="text" name="cantidad" class="form-control" required="">
+							<input type="text" name="cantidad_per" class="form-control" required="">
 						</div>
 						<div class="form-group">
 							<label>Descripcion</label>

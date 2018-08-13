@@ -28,11 +28,18 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	/* --- Usuarios ---*/
 	Route::resource('/users','UserController',["middleware" => 'rol_admin']);
 
-	/* --- Grupos ---*/
+	/* --- redes ---*/
 	Route::resource('redes','RedesController');
 
 	// prospectos
 	Route::resource('prospectos','ProspectosController');
+	Route::get('prospectos/pdf/{id}','ProspectosController@pdf')->name('p_pdf');
+	Route::get('prospectos/eliminar/{id}','ProspectosController@eliminar')->name('pros.eliminar');
+
+	// requerimientos
+	Route::resource('req','RequerimientosController');
+	Route::get('req/pdf/{id}','RequerimientosController@pdf')->name('r_pdf');
+	Route::get('req/eliminar/{id}','RequerimientosController@eliminar')->name('req.eliminar');
 
 	//departamentos, provincias y distritos
 	Route::resource('departamentos','DepartamentoController');
@@ -48,7 +55,7 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	Route::get('users_status/{id}', 'UserController@userStatus');
 	Route::put('update_status/{id}', 'UserController@updateStatusUser');
 
-	Route::get('articulos/img/{filename}',function($filename){
+	Route::get('img/{filename}',function($filename){
 
 		// ubicacion de la ruta en storage
 		$path = storage_path("app/images/$filename");

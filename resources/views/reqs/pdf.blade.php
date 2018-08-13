@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PDF Venta</title>
+        <title>PDF reporte inmueble</title>
        	<style>
 
 html {
@@ -8326,34 +8326,59 @@ button.close {
             <div class="row">
                 <div class="col-sm-12">
                 	<h1 class="page-header text-center" style="border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
-                		<span class="text-capitalize">Littlebru.com</span> 
-                	</h1>
-                	<small>
-                		<em>Venta realizada por <b>{{ $venta->user->name }} {{ $venta->user->apellido }}</b></em>
-                	</small>
+                    <span class="text-capitalize">Requerimiento de Inmueble</span> 
+                  </h1>
+                  <p>
+                    <span class="">
+                      Direccion: {{ $req->departamento->departamento }} / {{ $req->provincia->provincia }} / {{ $req->distrito->distrito }}
+                    </span>
+                  </p> 
+                  <p>
+                    <span class="text-left">
+                      <b>Nombre: {{ $req->persona->name }} / Telf: {{ $req->persona->telefono }} / E-mail: {{ $req->persona->email }}</b>
+                    </span>
+                    <br>
+                    <b>
+                    <span class="text-left">Presupuesto: {{ $req->presupuesto }} {{ $req->unidad->name }}</span><br>
+                    <span class="text-left">Referencia: {{ $req->referencia }}</span>
+                    </b>
+                  </p>
+                  <p></p>
 				    <table class="table table-bordered">
 				        <thead class="well">
 				            <tr>
-				                <th>Nº Contrato</th>
-				                <th>Comprador</th>
-				                <th>Articulo</th>
-				                <th>Precio</th>
+				                <th>Tipo</th>
+				                <th>Antiguedad</th>
+				                <th>Dormitorios</th>
+				                <th>Estacionamientos</th>
+                        <th>Baños</th>
+                        <th>Metros tot</th>
+				                <th>Opcion</th>
 				                <th>Status</th>
-				                <th>Fecha de Venta</th>
-				            </tr>                            
+                    </tr>                            
 				        </thead>
 				        <tbody>
 				            <tr>
-				            	<td>{{ $venta->numero_contrato }}</td>
-				            	<td>{{ $venta->entrevista->nombre }} {{ $venta->entrevista->apellido }}</td>
-				            	<td>{{ $venta->articulo->name }}</td>
-				            	<td>{{ $venta->precio }} {{ $venta->unidad->name }}</td>
-				            	<td>{{ $venta->status->name }}</td>
-				            	<td>{{ $venta->formatoCreated() }}</td>
+				            	<td>{{ $req->tipo->name }}</td>
+				            	<td>{{ $req->antiguedad }}</td>
+				            	<td>{{ $req->dormitorios }}</td>
+				            	<td>{{ $req->estacionamientos }}</td>
+				            	<td>Completos {{ $req->b_completos }} <br> Medio {{ $req->b_medio }}</td>
+				            	<td>Totales {{ $req->metros_cua }}</td>
+				            	<td>{{ $req->opcion }}</td>
+				            	<td>{{ $req->status }}</td>
 				            </tr>
 				        </tbody>
 				    </table>
                 </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h3>Comentario</h3>
+                <p style="padding: 1em;" class="well">
+                  <b>{{ $req->comentario }}</b>
+                </p>
+              </div>
             </div>
         </div>
     </body>
