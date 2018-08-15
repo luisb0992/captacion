@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Red;
+use App\SaveClick;
 
 class RedesController extends Controller
 {
@@ -18,11 +19,19 @@ class RedesController extends Controller
     		$redes = Red::all();
     	}else{
     		$user = \Auth::user()->id;
-    		$redes = Red::where('user_id', $user)->get();	
+    		$redes = Red::where('user_id', $user)->get();
     	}
-    	
+
         return view('redes.index',[
         	'redes' => $redes
+        ]);
+    }
+
+    public function reporteClick()
+    {
+
+        return view('redes.reportes',[
+        	'reportes' => SaveClick::all()
         ]);
     }
 
@@ -67,7 +76,7 @@ class RedesController extends Controller
 	          'flash_important' => true
 	        ]);
 
-	    }   
+	    }
     }
 
     /**
@@ -113,5 +122,16 @@ class RedesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function saveClick(Request $request)
+    {
+        $save = new SaveClick;
+        $save->red_id = $request->red_id;
+        $save->fecha = date("d-m-Y");
+        $save->hora = date("h:m a");
+        $save->save();
+
+        return response()->json($save);
     }
 }

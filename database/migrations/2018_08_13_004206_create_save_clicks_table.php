@@ -15,7 +15,6 @@ class CreateSaveClicksTable extends Migration
     {
         Schema::create('save_clicks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cantidad');
             $table->string('fecha');
             $table->string('hora');
             $table->integer('red_id')->unsigned();
@@ -24,12 +23,6 @@ class CreateSaveClicksTable extends Migration
                         ->on('redes')
                         ->onDelete('cascade');
 
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')
-                        ->references('id')
-                        ->on('users')
-                        ->onDelete('cascade');
-                        
             $table->timestamps();
         });
     }

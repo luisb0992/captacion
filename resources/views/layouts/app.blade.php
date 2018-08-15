@@ -120,6 +120,7 @@
                 <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Ver usuarios</a></li>
                 <li><a href="{{ route('users.create') }}"><i class="fa fa-circle-o"></i>Agregar usuario</a></li>
                 <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Redes Sociales</a></li>
+                <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
               </ul>
             </li>
 

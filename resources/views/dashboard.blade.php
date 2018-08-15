@@ -10,7 +10,7 @@
 			<br>
 		</div>
 			<div class="col-sm-4 border_right_1">
-				<a href="{{ url('entrevistas') }}">   
+				<a href="{{ route('prospectos.index') }}">   
 					<img src="{{ asset('img/dashboard_2.png') }}" alt="entrevistas" class="img_hover img-responsive text-center col-sm-10">
 				</a>
 				<span class="h3 text-center"><i>Prospectos</i></span>

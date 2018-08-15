@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 
 	/* --- redes ---*/
 	Route::resource('redes','RedesController');
+  Route::post('saveClick','RedesController@saveClick')->name('saveClick');
+  Route::get('reportes','RedesController@reporteClick')->name('reporteClick');
 
 	// prospectos
 	Route::resource('prospectos','ProspectosController');

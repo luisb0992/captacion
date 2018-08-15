@@ -9,7 +9,7 @@
 @endsection
 @section('content')
 	@include('partials.flash')
-	
+
 	<div class="row">
 	  	<div class="col-md-12">
 	    	<div class="box box-danger">
@@ -40,13 +40,14 @@
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $red->user->name }} {{ $red->user->apellido }}</td>
 									<td>
-										<a href="{{ $red->link }}" target="blank" class="btn btn-link" id="link">
+										<a href="{{ $red->link }}" target="_blank" class="btn btn-link" onclick="Link(this);" data-value="{{ $red->id }}">
 											<i class="fa fa-hand-o-up"></i> {{ $red->link }}
 										</a>
+										<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 									</td>
 									<td>{{ $red->fecha }}</td>
 									<td>{{ $red->hora }}</td>
-									<td>{{ $red->cantidad }}</td>
+									<td>{{ $red->cantidad_per }}</td>
 									<td>{{ $red->descripcion }}</td>
 								</tr>
 							@endforeach
@@ -57,30 +58,31 @@
 		</div>
 	</div>
 @endsection
-@section("scripts")
+@section("script")
 <script>
-	$("#link").click(function(e){
+		//link de redes sociales
+    function Link(ele){
+			// alert($(ele).data('value'));
 
-		// e.preventDefault();
-		var token = $("#token").val();
-		var ruta = $('#ruta_crear_comentario').attr('href');
+			 var token = $("#token").val();
+			 var ruta = '{{ route('saveClick') }}';
 
-		$.ajax({
-			url: ruta,
-			headers: {'X-CSRF-TOKEN': token},
-			type: 'POST',
-			dataType: 'JSON',
-			data: {comentario: $("#comentario").val(), entrevista_id: $("#id_entre").val()},
-		})
-		.done(function(data) {
+			 $.ajax({
+					 url: ruta,
+					 headers: {'X-CSRF-TOKEN': token},
+					 type: 'POST',
+					 dataType: 'JSON',
+					 data: {red_id: $(ele).data('value')},
+			 })
+			 .done(function(data) {
+				 console.log("guardo");
+			 })
+			 .fail(function(data) {
 
-		})
-		.fail(function(data) {
-		
-		})
-		.always(function() {
-			console.log("complete");
-		});
-  	});
+			 })
+			 .always(function() {
+					 console.log("complete");
+			 });
+    }
 </script>
 @endsection
