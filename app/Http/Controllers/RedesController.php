@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Red;
+use App\User;
 use App\SaveClick;
 
 class RedesController extends Controller
@@ -29,9 +30,10 @@ class RedesController extends Controller
 
     public function reporteClick()
     {
-
+        $r = SaveClick::all();
         return view('redes.reportes',[
-        	'reportes' => SaveClick::all()
+        	'reportes' => $r,
+          'users' => User::all()
         ]);
     }
 
@@ -133,5 +135,23 @@ class RedesController extends Controller
         $save->save();
 
         return response()->json($save);
+    }
+
+    public function busquedaClick(Request $request)
+    {
+        // obtenemos los ids de la tabla redes
+        $red = Red::where("user_id", $request->user_id)->get(["id"]);
+
+        // formatemos la fecha recibida
+        $fecha = date('d-m-Y',strtotime(str_replace('/', '-', $request->fecha)));
+
+        // construimos la query para el conteo de los clicks
+        $reportes = SaveClick::where("fecha", $fecha)->whereIn("red_id", $red)->get()->groupBy("red_id");
+        // dd($reportes);
+
+        return view("redes.busqueda",[
+          'reportes' => $reportes,
+          'users' => User::all()
+        ]);
     }
 }

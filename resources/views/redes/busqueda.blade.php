@@ -29,7 +29,7 @@
 
         <fieldset class="form-group">
           <label for="fecha">Fecha</label>
-					<input type="text" class="form-control fecha" name="fecha" placeholder="d/m/a" id="fecha" required>
+          <input type="text" class="form-control fecha" id="fecha" name="fecha" required>
         </fieldset>
 
         <button type="submit" class="btn btn-primary">Buscar</button>
@@ -49,11 +49,14 @@
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Link de Facebook</th>
 								<th class="text-center">Fecha</th>
-								<th class="text-center">Hora</th>
+								<th class="text-center">Cantidad de Cliks</th>
 							</tr>
 						</thead>
 						<tbody class="text-center">
-							@foreach($reportes as $r)
+							@foreach($reportes as $red)
+              @php $data = $red->count(); @endphp
+                @foreach($red as $ra)
+                @foreach($ra->red->user->groupBy("name") as $r)
 								<tr>
 									<td>{{ $r->red->user->name }} {{ $r->red->user->apellido }}</td>
 									<td>
@@ -62,8 +65,10 @@
 										</a>
                   </td>
 									<td>{{ $r->fecha }}</td>
-									<td>{{ $r->hora }}</td>
+									<td>{{ $data }}</td>
 								</tr>
+							  @endforeach
+							  @endforeach
 							@endforeach
 						</tbody>
 					</table>
