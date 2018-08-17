@@ -128,7 +128,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Prospecto</span>
+                <span>Prospectos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -160,8 +160,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Listado</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li>
+                <li><a href="{{ route('fc.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+                <li><a href="{{ route('fc.index') }}"><i class="fa fa-circle-o"></i> Reporte</a></li>
               </ul>
             </li>
 

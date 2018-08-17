@@ -59,19 +59,20 @@ class ProspectosController extends Controller
             'titulo' => 'required|unique:prospectos',
             'tipo_id' => 'required'
         ]);
+        $pros = new Prospecto;
         $query = Prospecto::orderBy("id", "DESC")->value("id");
         $codigo = "";
+
         if ($query) {
             $codigo = $query + 1;
         }else{
             $codigo = 1;
         }
-        $pros = new Prospecto;
 
         if ($request->antiguedad_a != '') {
-            $req->antiguedad = $request->antiguedad_a.' años';
+            $pros->antiguedad = $request->antiguedad_a.' años';
         }else{
-            $req->antiguedad = $request->antiguedad;
+            $pros->antiguedad = $request->antiguedad;
         }
 
         $pros->user_id = \Auth::user()->id;
@@ -79,7 +80,7 @@ class ProspectosController extends Controller
 
         $pros->fill($request->all());
         $hasfile = $request->hasFile('imagen') && $request->imagen->isValid();
-        
+
         if ($hasfile){
             $extension = $request->imagen->extension();
             if ($extension == 'jpeg' || $extension == 'png' || $extension == 'bmp' || $extension == 'jpg') {
@@ -108,7 +109,7 @@ class ProspectosController extends Controller
                 'flash_class' => 'alert-danger',
                 'flash_important' => true
             ]);
-        }          
+        }
 
     }
 
@@ -159,10 +160,12 @@ class ProspectosController extends Controller
             'tipo_id' => 'required'
         ]);
 
-        if ($request->antiguedad != '' && $request->antiguedad_a != '') {
+        if ($request->antiguedad_a != '') {
             $pros->antiguedad = $request->antiguedad_a.' años';
-        }else{
+        }elseif($request->antiguedad != ''){
             $pros->antiguedad = $request->antiguedad;
+        }else{
+            $pros->antiguedad = $pros->antiguedad;
         }
 
         $pros->user_id = \Auth::user()->id;
@@ -181,7 +184,7 @@ class ProspectosController extends Controller
                   $pros->foto = $extension;
               }
         }
-        
+
         if($pros->save()){
             if ($hasfile) {
               $request->imagen->storeAs('images',"$pros->id.$extension");

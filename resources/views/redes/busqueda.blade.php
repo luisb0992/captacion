@@ -50,25 +50,41 @@
 								<th class="text-center">Link de Facebook</th>
 								<th class="text-center">Fecha</th>
 								<th class="text-center">Cantidad de Cliks</th>
+								<!-- <th class="text-center">Pdf</th> -->
 							</tr>
 						</thead>
 						<tbody class="text-center">
-							@foreach($reportes as $red)
-              @php $data = $red->count(); @endphp
-                @foreach($red as $ra)
-                @foreach($ra->red->user->groupBy("name") as $r)
-								<tr>
-									<td>{{ $r->red->user->name }} {{ $r->red->user->apellido }}</td>
-									<td>
+
+              @foreach($reportes as $re)
+                @php $conteo = $re->count(); @endphp
+
+              @foreach($re as $r)
+                @php $user_id = $r->user->id; @endphp
+                @php $name = $r->user->name; $ape = $r->user->apellido; @endphp
+                @php $link = $r->red->link; @endphp
+                @php $fecha = $r->fecha; @endphp
+                @php $id = $r->id; @endphp
+							@endforeach
+
+                <tr>
+                  <td>{{ $name }} {{ $ape }}</td>
+                  <td>
                     <a href="{{ $r->red->link }}" target="_blank" class="btn btn-link">
-											<i class="fa fa-hand-o-up"></i> {{ $r->red->link }}
-										</a>
+                      <i class="fa fa-hand-o-up"></i> {{ $link }}
+                    </a>
                   </td>
-									<td>{{ $r->fecha }}</td>
-									<td>{{ $data }}</td>
-								</tr>
-							  @endforeach
-							  @endforeach
+                  <td>{{ $fecha }}</td>
+                  <td>{{ $conteo }}</td>
+                  <!-- <td>
+                    <form action="{{ route('sv_pdf',[$user_id, $fecha]) }}" method="GET">
+											{{ csrf_field() }}
+											<button type="submit" class="btn btn-danger btn-sm">
+												<i class="fa fa-file-pdf-o"></i> PDF
+											</button>
+										</form>
+                  </td> -->
+                </tr>
+
 							@endforeach
 						</tbody>
 					</table>

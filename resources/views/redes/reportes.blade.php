@@ -55,7 +55,7 @@
 						<tbody class="text-center">
 							@foreach($reportes as $r)
 								<tr>
-									<td>{{ $r->red->user->name }} {{ $r->red->user->apellido }}</td>
+									<td>{{ $r->user->name }} {{ $r->user->apellido }}</td>
 									<td>
                     <a href="{{ $r->red->link }}" target="_blank" class="btn btn-link">
 											<i class="fa fa-hand-o-up"></i> {{ $r->red->link }}

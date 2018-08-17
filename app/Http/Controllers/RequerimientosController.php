@@ -74,7 +74,7 @@ class RequerimientosController extends Controller
         $req->fill($request->all());
 
         if($req->save()){
-            
+
             $per = new Persona;
             $per->fill($request->all());
             $per->requerimiento_id = $req->id;
@@ -86,7 +86,7 @@ class RequerimientosController extends Controller
             ]);
 
         }else{
-            
+
             return redirect("req")->with([
                 'flash_message' => 'Ha ocurrido un error.',
                 'flash_class' => 'alert-danger',
@@ -143,16 +143,19 @@ class RequerimientosController extends Controller
 
         if ($request->antiguedad_a != '') {
             $req->antiguedad = $request->antiguedad_a.' años';
-        }else{
+        }elseif($request->antiguedad != ''){
             $req->antiguedad = $request->antiguedad;
+        }else{
+            $req->antiguedad = $req->antiguedad;
         }
+
 
         $req->user_id = \Auth::user()->id;
 
         $req->fill($request->all());
 
         if($req->save()){
-            
+
             $per = Persona::find($request->per_id);
             $per->fill($request->all());
             $per->requerimiento_id = $req->id;
@@ -164,7 +167,7 @@ class RequerimientosController extends Controller
             ]);
 
         }else{
-            
+
             return redirect("req")->with([
                 'flash_message' => 'Ha ocurrido un error.',
                 'flash_class' => 'alert-danger',

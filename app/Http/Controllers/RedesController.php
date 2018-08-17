@@ -129,6 +129,7 @@ class RedesController extends Controller
     public function saveClick(Request $request)
     {
         $save = new SaveClick;
+        $save->user_id = \Auth::user()->id;
         $save->red_id = $request->red_id;
         $save->fecha = date("d-m-Y");
         $save->hora = date("h:m a");
@@ -139,19 +140,26 @@ class RedesController extends Controller
 
     public function busquedaClick(Request $request)
     {
-        // obtenemos los ids de la tabla redes
-        $red = Red::where("user_id", $request->user_id)->get(["id"]);
 
         // formatemos la fecha recibida
         $fecha = date('d-m-Y',strtotime(str_replace('/', '-', $request->fecha)));
 
         // construimos la query para el conteo de los clicks
-        $reportes = SaveClick::where("fecha", $fecha)->whereIn("red_id", $red)->get()->groupBy("red_id");
+        $reportes = SaveClick::where("fecha", $fecha)->where("user_id", $request->user_id)->get()->groupBy("red_id");
         // dd($reportes);
 
         return view("redes.busqueda",[
           'reportes' => $reportes,
           'users' => User::all()
         ]);
+    }
+
+    public function pdf($id, $fecha){
+
+        $save = SaveClick::where("fecha", $fecha)->where("user_id", $id)->get()->groupBy("red_id");
+
+        $pdf = PDF::loadView('prospectos.pdf', compact('save'));
+
+        return $pdf->setPaper('a4', 'landscape')->download(date("d-m-Y h:m:s").'.pdf');
     }
 }
