@@ -32,7 +32,8 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	Route::resource('redes','RedesController');
   Route::post('saveClick','RedesController@saveClick')->name('saveClick');
   Route::get('reportes','RedesController@reporteClick')->name('reporteClick');
-  Route::post('reportes','RedesController@busquedaClick')->name('busqueda_click');
+  Route::post('reportes/busqueda','RedesController@busquedaClick')->name('busqueda_click');
+  Route::get('reportesClicks/pdf/{id}/{fecha}','RedesController@pdf')->name('sv_pdf');
 
 	// prospectos
 	Route::resource('prospectos','ProspectosController');
@@ -43,6 +44,9 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	Route::resource('req','RequerimientosController');
 	Route::get('req/pdf/{id}','RequerimientosController@pdf')->name('r_pdf');
 	Route::get('req/eliminar/{id}','RequerimientosController@eliminar')->name('req.eliminar');
+
+  // futuros clientes
+  Route::resource('fc','FcController');
 
 	//departamentos, provincias y distritos
 	Route::resource('departamentos','DepartamentoController');
