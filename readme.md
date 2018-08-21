@@ -1,2 +1,1 @@
-# inventariocb
-sistema de captacion de inmuebles desde peru a venezuela
+<h1>Sistema Inmuebles Peru</h1>
