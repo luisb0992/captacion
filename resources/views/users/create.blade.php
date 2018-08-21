@@ -15,7 +15,7 @@
 					<form class="" action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
 						{{ method_field( 'POST' ) }}
 						{{ csrf_field() }}
-						<h4 class="padding_1em label-primary">Agregar Usuario</h4>
+						<h4 class="padding_1em label-danger">Agregar Usuario</h4>
 						<div class="form-group {{ $errors->has('name')?'has-error':'' }}">
 							<label class="control-label" for="name">Nombre: <span class="span_rojo">*</span></label>
 							<input id="name" class="form-control" type="text" name="name" value="{{ old('name')?old('name'):'' }}" placeholder="Nombre" required>
@@ -25,7 +25,7 @@
 							<label class="control-label" for="apellido">Apellido: <span class="span_rojo">*</span></label>
 							<input id="apellido" class="form-control" type="text" name="apellido" value="{{ old('apellido')?old('apellido'):'' }}" placeholder="Apellido" required>
 						</div>
-						
+
 						<div class="form-group {{ $errors->has('email')?'has-error':'' }}">
 							<label class="control-label" for="email">Email: <span class="span_rojo">*</span></label>
 							<input id="email" class="form-control" type="mail" name="email" value="{{ old('email')?old('email'):'' }}" placeholder="Email" required>
@@ -90,7 +90,7 @@
 					            @foreach($errors->all() as $error)
 					              <li>{{$error}}</li>
 					            @endforeach
-					          </ul>  
+					          </ul>
 				          </div>
 				        @endif
 

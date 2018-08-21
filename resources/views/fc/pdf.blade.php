@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PDF reporte inmueble</title>
+        <title>PDF Futuro Cliente</title>
        	<style>
 
 html {
@@ -8348,7 +8348,7 @@ button.close {
 				            	<td>{{ $fc->user->name }}</td>
 				            	<td>{{ $fc->opcion }}</td>
 				            	<td>{{ $fc->status }}</td>
-				            	<td>{{ $fc->created_at }}</td>
+				            	<td>{{ $fc->fecha() }}</td>
 				            </tr>
 				        </tbody>
 				    </table>

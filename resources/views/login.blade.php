@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/ep.css')}}">
     <style>
     	.fondo_login{
-    		/* background-image: url('{{ asset('img/inventario_3.jpg') }}'); */
+    		background-image: url('{{ asset('img/fondo2.jpg') }}');
 				background-color: #eee;
     		background-position: center center;
 	      background-size: 100%;
@@ -29,7 +29,7 @@
 			  <div class="login-box">
 			    <div class="login-logo">
 			      <center>
-			      	<img class="img-responsive" src="{{ asset('img/logo_login.png') }}" style="height:75px;">
+			      	<img class="img-responsive" src="{{ asset('img/login.png') }}" style="height:75px;">
 			      </center>
 			      <small class="text-center" style="font-size: 22px;">{{ config('app.name') }}</small>
 			    </div>

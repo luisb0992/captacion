@@ -232,7 +232,7 @@ class ProspectosController extends Controller
 
         $pdf = PDF::loadView('prospectos.pdf', compact('pro'));
 
-        return $pdf->setPaper('a4', 'landscape')->download(date("d-m-Y h:m:s").'.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream(date("d-m-Y h:m:s").'.pdf');
     }
 
 }

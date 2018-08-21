@@ -74,7 +74,7 @@
 									<td>{{ $t->opcion }}</td>
 									<td class="well">{{ $t->status->name }}</td>
 									<td>
-										<form action="{{ route('p_pdf',$t->id ) }}" method="GET">
+										<form action="{{ route('p_pdf',$t->id ) }}" method="GET" target="_blank">
 											{{ csrf_field() }}
 											<button type="submit" class="btn btn-danger btn-sm">
 												<i class="fa fa-file-pdf-o"></i> PDF
@@ -92,9 +92,9 @@
 											</a>
 										@endif
 										<a href="{{ route('prospectos.edit', $t->id) }}" class="btn btn-primary btn-sm">
-			                    			<i class="fa fa-eye"></i> Ver y editar
-			                    		</a>
-			                    		@if(\Auth::user()->perfil_id == 1)
+                			<i class="fa fa-eye"></i> Ver y editar
+                		</a>
+                		@if(\Auth::user()->perfil_id == 1)
 										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');"><i class="fa fa-remove"></i> Eliminar</a>
 										@endif
 									</td>

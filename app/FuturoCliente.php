@@ -17,4 +17,11 @@ class FuturoCliente extends Model
     public function persona(){
     	return $this->hasOne("App\Persona", "ft_id");
     }
+
+    // metodos
+    public function fecha(){
+        $created = $this->created_at;
+        $newcreated = date('d-m-Y',strtotime(str_replace('/', '-', $created)));
+        return $newcreated;
+    }
 }

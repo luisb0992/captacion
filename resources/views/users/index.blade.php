@@ -19,7 +19,7 @@
   	<div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
-        
+
         <div class="info-box-content">
           <span class="info-box-text">Usuarios</span>
           <span class="info-box-number">{{ count($users) }}</span>
@@ -45,6 +45,7 @@
 							<tr>
 								<th class="text-center">#</th>
 								<th class="text-center">Nombre y Apellido</th>
+								<th class="text-center">Direccion</th>
 								<th class="text-center">Email</th>
 								<th class="text-center">Clave</th>
 								<th class="text-center">Perfil</th>
@@ -57,27 +58,28 @@
 								<tr>
 									<td>{{$loop->index+1}}</td>
 									<td>{{$d->name}} {{$d->apellido}}</td>
+									<td>{{ $d->dep->departamento }} / {{ $d->prov->provincia }} / {{ $d->dist->distrito }}</td>
 									<td>{{$d->email}}</td>
 									<td>@if($d->clave){{$d->clave}}@else <span class="text-primary">clave encriptada</span> @endif</td>
 									<td class="@if($d->perfil_id == 1) label-primary @else label-info @endif">{{ $d->perfil->name }}</td>
-									<td class="	@if($d->status == 1) 
-													label-success 
-												@elseif($d->status == 2) 
-													label-warning 
-												@elseif($d->status == 3) 
-													label-danger 
+									<td class="	@if($d->status == 1)
+													label-success
+												@elseif($d->status == 2)
+													label-warning
+												@elseif($d->status == 3)
+													label-danger
 												@endif">
 
 											{{$d->nameStatus()}}
-										<button type="button" id="btn_status" value="{{ $d->id }}" 
-										data-toggle="modal" data-target="#modal_edit_status" 
-										aria-expanded="false" aria-controls="modal_edit_status" 
+										<button type="button" id="btn_status" value="{{ $d->id }}"
+										data-toggle="modal" data-target="#modal_edit_status"
+										aria-expanded="false" aria-controls="modal_edit_status"
 										class="btn pull-right btn-default" onclick="MostrarStatus(this);">
 											<span class="">
 												<i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
-											</span>	
+											</span>
 										</button>
-										@include('partials.modal_edit_status')	
+										@include('partials.modal_edit_status')
 									</td>
 									<td>
 										<a class="btn btn-primary btn-flat btn-sm" href="{{ route('users.show',[$d->id])}}"><i class="fa fa-search"></i></a>
@@ -118,7 +120,7 @@
 		  var ruta = "update_status/"+$("#id_user").val();
 		  var btn = $('.btn_edit_status');
 		  btn.text('Espere...');
-		  
+
 		  $.ajax({
 		    url: ruta,
 		    headers: {'X-CSRF-TOKEN': $("#token").val()},
