@@ -13,4 +13,8 @@ class FuturoCliente extends Model
     public function user(){
     	return $this->belongsTo("App\User", "user_id");
     }
+
+    public function persona(){
+    	return $this->hasOne("App\Persona", "ft_id");
+    }
 }

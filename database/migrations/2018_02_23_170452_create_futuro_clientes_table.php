@@ -15,7 +15,7 @@ class CreateFuturoClientesTable extends Migration
     {
         Schema::create('futuros_clientes', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                     ->references('id')
@@ -25,6 +25,7 @@ class CreateFuturoClientesTable extends Migration
             $table->string('nombre_captador')->nullable();
             $table->string('nombre_peru')->nullable();
             $table->string('opcion')->nullable();
+            $table->string('status')->nullable();
             $table->text('comentario')->nullable();
 
             $table->timestamps();

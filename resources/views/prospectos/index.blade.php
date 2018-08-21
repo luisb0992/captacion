@@ -14,7 +14,7 @@
   	<div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fa-list-alt"></i></span>
-        
+
         <div class="info-box-content">
           <span class="info-box-text">Prospectos</span>
           <span class="info-box-number">{{ $pros->count() }}</span>
@@ -42,13 +42,13 @@
 					</div>
 					<div class="col-sm-12 bg-danger">
 						<h3>Mis Prospectos de inmuebles</h3>
-					</div>	
+					</div>
 					<table class="table data-table table-bordered table-hover">
 						<thead class="label-danger">
 							<tr>
 								<th class="text-center">Titulo</th>
+								<th class="text-center">Codigo</th>
 								<th class="text-center">Tipo propiedad</th>
-								<th class="text-center">localidad</th>
 								<th class="text-center">Precio</th>
 								<th class="text-center">Metros Tot</th>
 								<th class="text-center">Opcion</th>
@@ -61,8 +61,8 @@
 							@foreach($pros as $t)
 								<tr>
 									<td>{{$t->titulo}}</td>
+									<td class="well">{{$t->codigo}}</td>
 									<td>{{$t->tipo->name}}</td>
-									<td>{{$t->departamento->departamento}}, {{$t->provincia->provincia}}, {{$t->distrito->distrito}}</td>
 									<td>
 										<span class="text-capitalize text-left">{{ $t->precio_des }}</span>
 										<br>
@@ -96,7 +96,7 @@
 			                    		</a>
 			                    		@if(\Auth::user()->perfil_id == 1)
 										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');"><i class="fa fa-remove"></i> Eliminar</a>
-										@endif 
+										@endif
 									</td>
 								</tr>
 							@endforeach
