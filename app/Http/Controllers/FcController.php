@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\FuturoCliente;
 use App\User;
+use App\Persona;
 
 class FcController extends Controller
 {
@@ -22,7 +24,7 @@ class FcController extends Controller
       		$fc = FuturoCliente::where('user_id', $user)->get();
       	}
 
-        return view('redes.index',[
+        return view('fc.index',[
         	'fc' => $fc
         ]);
     }
@@ -34,7 +36,7 @@ class FcController extends Controller
      */
     public function create()
     {
-        //
+        return view("fc.create");
     }
 
     /**
@@ -45,7 +47,26 @@ class FcController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fc = new FuturoCliente;
+        $fc->status = $request->status;
+        $fc->opcion = $request->opcion;
+        $fc->comentario = $request->comentario;
+        $fc->user_id = \Auth::user()->id;
+
+        if($fc->save()){
+          $p = new Persona;
+          $p->fill($request->all());
+          $p->ft_id = $fc->id;
+          $p->save();
+
+          return redirect("fc")->with([
+              'flash_message' => 'Registrado correctamente.',
+              'flash_class' => 'alert-success'
+          ]);
+        }
+
+
+
     }
 
     /**
@@ -91,5 +112,24 @@ class FcController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function eliminar($id)
+    {
+        $prospecto = FuturoCliente::destroy($id);
+
+        return redirect("fc")->with([
+              'flash_message' => 'Futuro cliente eliminado correctamente.',
+              'flash_class' => 'alert-success'
+        ]);
+    }
+
+    public function pdf($id){
+
+        $fc = FuturoCliente::findOrFail($id);
+
+        $pdf = PDF::loadView('fc.pdf', compact('fc'));
+
+        return $pdf->setPaper('a4', 'landscape')->stream(date("d-m-Y h:m:s").'.pdf');
     }
 }

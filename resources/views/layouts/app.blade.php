@@ -161,7 +161,10 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{ route('fc.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+<<<<<<< HEAD
                 <li><a href="{{ route('fc.index') }}"><i class="fa fa-circle-o"></i> Reporte</a></li>
+=======
+>>>>>>> f49a5db9ecc34fd104ecdfd7e7f2bc669113a9aa
               </ul>
             </li>
 
