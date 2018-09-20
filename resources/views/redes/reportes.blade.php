@@ -50,6 +50,7 @@
 								<th class="text-center">Link de Facebook</th>
 								<th class="text-center">Fecha</th>
 								<th class="text-center">Hora</th>
+								<th class="text-center">Provincia</th>
 							</tr>
 						</thead>
 						<tbody class="text-center">
@@ -57,12 +58,13 @@
 								<tr>
 									<td>{{ $r->user->name }} {{ $r->user->apellido }}</td>
 									<td>
-                    <a href="{{ $r->red->link }}" target="_blank" class="btn btn-link">
+					                    <a href="{{ $r->red->link }}" target="_blank" class="btn btn-link">
 											<i class="fa fa-hand-o-up"></i> {{ $r->red->link }}
 										</a>
-                  </td>
+				                  	</td>
 									<td>{{ $r->fecha }}</td>
 									<td>{{ $r->hora }}</td>
+									<td>{{ $r->red->provincia }}</td>
 								</tr>
 							@endforeach
 						</tbody>

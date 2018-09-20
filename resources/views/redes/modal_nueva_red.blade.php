@@ -26,6 +26,14 @@
 							<input type="text" name="cantidad_per" class="form-control" required="">
 						</div>
 						<div class="form-group">
+							<label>Provincia</label>
+							<select class="form-control" name="provincia" required="">
+								@foreach($prov as $p)
+								<option value="{{ $p->provincia }}">{{ $p->provincia }}</option>
+								@endforeach
+							</select>
+						</div>
+						<div class="form-group">
 							<label>Descripcion</label>
 							<textarea class="form-control" name="descripcion"></textarea>
 						</div>

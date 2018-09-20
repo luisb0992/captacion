@@ -31,6 +31,7 @@
 								<th class="text-center">fecha de creacion</th>
 								<th class="text-center">hora de creacion</th>
 								<th class="text-center">Cantidad personas</th>
+								<th class="text-center">Provincia</th>
 								<th class="text-center">descripcion</th>
 							</tr>
 						</thead>
@@ -48,6 +49,7 @@
 									<td>{{ $red->fecha }}</td>
 									<td>{{ $red->hora }}</td>
 									<td>{{ $red->cantidad_per }}</td>
+									<td>{{ $red->provincia }}</td>
 									<td>{{ $red->descripcion }}</td>
 								</tr>
 							@endforeach
