@@ -194,8 +194,8 @@
 					</div>
 
 					<div class="col-sm-6">
-						<label for="nombre">Foto<span class="span_rojo">*</span></label>
-						<input id="file_input" type="file" class="file" data-preview-file-type="text" name="imagen">
+						<label for="nombre">Foto<span class="span_rojo">*</span></label>(seleccione uno o varias imagenes para subir)
+						<input id="file_input" type="file" data-preview-file-type="text" name="imagen[]" multiple="">
 					</div>
 
 					<div class="col-sm-6">

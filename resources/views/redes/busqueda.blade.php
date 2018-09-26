@@ -49,7 +49,8 @@
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Link de Facebook</th>
 								<th class="text-center">Fecha</th>
-								<th class="text-center">Cantidad de Cliks</th>
+                <th class="text-center">Cantidad de Cliks</th>
+								<th class="text-center">Provincia</th>
 								<!-- <th class="text-center">Pdf</th> -->
 							</tr>
 						</thead>
@@ -64,6 +65,7 @@
                 @php $link = $r->red->link; @endphp
                 @php $fecha = $r->fecha; @endphp
                 @php $id = $r->id; @endphp
+                @php $provincia = $r->red->provincia; @endphp
 							@endforeach
 
                 <tr>
@@ -75,6 +77,7 @@
                   </td>
                   <td>{{ $fecha }}</td>
                   <td>{{ $conteo }}</td>
+                  <td>{{ $provincia }}</td>
                   <!-- <td>
                     <form action="{{ route('sv_pdf',[$user_id, $fecha]) }}" method="GET">
 											{{ csrf_field() }}

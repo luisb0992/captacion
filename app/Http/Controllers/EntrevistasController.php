@@ -65,6 +65,8 @@ class EntrevistasController extends Controller
 	        'telefono' => 'unique:entrevistas'
 	    ]);
 
+      dd($request->all());
+
     	$entrevista = new Entrevista();
     	$entrevista->user_id = \Auth()->user()->id;
     	$entrevista->nombre = $request->nombre;

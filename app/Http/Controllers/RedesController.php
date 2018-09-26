@@ -125,7 +125,20 @@ class RedesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $red = Red::findOrFail($id);
+        
+        if($red->delete()){
+            return redirect('redes')->with([
+                'flash_class'   => 'alert-success',
+                'flash_message' => 'Registro eliminado con exito.'
+            ]);
+        }else{
+            return redirect('redes')->with([
+                'flash_class'     => 'alert-danger',
+                'flash_message'   => 'Ha ocurrido un error.',
+                'flash_important' => true
+            ]);
+        }
     }
 
     public function saveClick(Request $request)

@@ -18,7 +18,6 @@ class CreateEntrevistasTable extends Migration
 
 						$table->string('codigo')->nullable();
 						$table->string('titulo')->nullable();
-						$table->string('foto')->nullable();
 						$table->text('descripcion')->nullable();
 
 						$table->integer('user_id')->unsigned();

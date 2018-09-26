@@ -11,6 +11,7 @@ use App\Provincia;
 use App\Distrito;
 use App\TipoInmueble;
 use App\Persona;
+use App\Imagen;
 
 class ProspectosController extends Controller
 {
@@ -59,6 +60,8 @@ class ProspectosController extends Controller
             'titulo' => 'required|unique:prospectos',
             'tipo_id' => 'required'
         ]);
+
+        // dd($request->imagen);
         $pros = new Prospecto;
         $query = Prospecto::orderBy("id", "DESC")->value("id");
         $codigo = "";
@@ -77,35 +80,30 @@ class ProspectosController extends Controller
 
         $pros->user_id = \Auth::user()->id;
         $pros->codigo = \Auth::user()->name."000".$codigo;
+        $pros->fill($request->all());    
 
-        $pros->fill($request->all());
-        $hasfile = $request->hasFile('imagen') && $request->imagen->isValid();
+        if($pros->save()){
 
-        if ($hasfile){
-            $extension = $request->imagen->extension();
-            if ($extension == 'jpeg' || $extension == 'png' || $extension == 'bmp' || $extension == 'jpg') {
-                $pros->foto = $extension;
-                if($pros->save()){
-                    $request->imagen->storeAs('images',"$pros->id.$extension");
-                    $per = new Persona;
-                    $per->fill($request->all());
-                    $per->prospecto_id = $pros->id;
-                    $per->save();
-                    return redirect("prospectos")->with([
-                        'flash_message' => 'Registrado correctamente.',
-                        'flash_class' => 'alert-success'
-                    ]);
-                }else{
-                    return redirect("prospectos")->with([
-                        'flash_message' => 'Ha ocurrido un error.',
-                        'flash_class' => 'alert-danger',
-                        'flash_important' => true
-                    ]);
-                }
+            for ($i = 0; $i < count($request->imagen); $i++) {
+              $ext = $request->imagen[$i]->extension();
+              $imagen = new Imagen;
+              $imagen->prospecto_id = $pros->id;
+              $imagen->imagen = $request->imagen[$i]->extension();
+              $imagen->save();
+              $request->imagen[$i]->storeAs('images',"$imagen->id.$ext");
             }
+
+            $per = new Persona;
+            $per->fill($request->all());
+            $per->prospecto_id = $pros->id;
+            $per->save();
+            return redirect("prospectos")->with([
+                'flash_message' => 'Registrado correctamente.',
+                'flash_class' => 'alert-success'
+            ]);
         }else{
             return redirect("prospectos")->with([
-                'flash_message' => 'la foto no es compatible, verifique',
+                'flash_message' => 'Ha ocurrido un error.',
                 'flash_class' => 'alert-danger',
                 'flash_important' => true
             ]);
@@ -172,23 +170,25 @@ class ProspectosController extends Controller
 
         $pros->fill($request->all());
 
-        // comprobamos la foto
-        $hasfile = $request->hasFile('imagen') && $request->imagen->isValid();
-
-        if ($hasfile){
-
-              $extension = $request->imagen->extension();
-
-              if ($extension == 'jpeg' || $extension == 'png' || $extension == 'jpg') {
-
-                  $pros->foto = $extension;
-              }
-        }
-
         if($pros->save()){
-            if ($hasfile) {
-              $request->imagen->storeAs('images',"$pros->id.$extension");
+            
+            // si existe la imagen procedemos a eliminar y guardar nuevamente
+            if ($request->imagen) {
+              Imagen::where("prospecto_id", $id)->delete();
+
+              // recorremos
+              for ($i = 0; $i < count($request->imagen); $i++) {
+
+                // eliminamos antes de guardar las nuevas
+                $ext = $request->imagen[$i]->extension();
+                $imagen = new Imagen;
+                $imagen->prospecto_id = $pros->id;
+                $imagen->imagen = $request->imagen[$i]->extension();
+                $imagen->save();
+                $request->imagen[$i]->storeAs('images',"$imagen->id.$ext");
+              }
             }
+
             $per = Persona::find($request->per_id);
             $per->fill($request->all());
             $per->prospecto_id = $pros->id;

@@ -28,11 +28,12 @@
 								<th class="text-center">#</th>
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Link de Facebook</th>
-								<th class="text-center">fecha de creacion</th>
-								<th class="text-center">hora de creacion</th>
+								<th class="text-center">Fecha de creacion</th>
+								<th class="text-center">Hora de creacion</th>
 								<th class="text-center">Cantidad personas</th>
 								<th class="text-center">Provincia</th>
-								<th class="text-center">descripcion</th>
+								<th class="text-center">Descripcion</th>
+								<th class="text-center">Accion</th>
 							</tr>
 						</thead>
 						<tbody class="text-center">
@@ -51,6 +52,15 @@
 									<td>{{ $red->cantidad_per }}</td>
 									<td>{{ $red->provincia }}</td>
 									<td>{{ $red->descripcion }}</td>
+									<td>
+										<form class="" action="{{ route('redes.destroy', $red->id) }}" method="POST">
+											{{ method_field( 'DELETE' ) }}
+              								{{ csrf_field() }}
+              								<button type="submit" class="btn btn-danger" onclick="return confirm('Seguro desea eliminar?');">
+              									<i class="fa fa-trash"></i>
+              								</button>
+										</form>
+									</td>
 								</tr>
 							@endforeach
 						</tbody>

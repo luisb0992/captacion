@@ -81,20 +81,31 @@
 											</button>
 										</form>
 									</td>
-									<td>
-										@if($t->foto)
-											<a href="{{ url("img/$t->id.$t->foto") }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-												<i class="fa fa-image"></i> Foto
-											</a>
-										@else
-											<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-												<i class="fa fa-image"></i> Foto
-											</a>
-										@endif
+									<td>	
+										<div class="btn-group">
+											  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    <i class="fa fa-image"></i> <span class="caret"></span>
+											  </button>
+											  <ul class="dropdown-menu">
+												@forelse($t->imagenes as $foto)
+													<li>
+														<a href="{{ url("img/$foto->id.$foto->imagen") }}" data-toggle="lightbox" data-max-width="600" id="img">
+															<i class="fa fa-image"></i> {{ $loop->index+1 }}
+														</a>
+													</li>
+												@empty
+													<li>
+														<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
+															<i class="fa fa-image"></i> 
+														</a>
+													</li>
+												@endforelse
+											  </ul>
+										</div>
 										<a href="{{ route('prospectos.edit', $t->id) }}" class="btn btn-primary btn-sm">
-                			<i class="fa fa-eye"></i> Ver y editar
-                		</a>
-                		@if(\Auth::user()->perfil_id == 1)
+				                			<i class="fa fa-eye"></i> Ver y editar
+				                		</a>
+				                		@if(\Auth::user()->perfil_id == 1)
 										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');"><i class="fa fa-remove"></i> Eliminar</a>
 										@endif
 									</td>

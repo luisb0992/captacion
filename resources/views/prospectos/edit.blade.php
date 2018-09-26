@@ -205,18 +205,19 @@
 					<div class="col-sm-2">
 						<label for="">Foto actual</label>
 						<br>
-						<button type="button"
-						data-toggle="modal" data-target="#foto"
-						aria-expanded="false" aria-controls="foto"
-						class="btn btn-primary">
-							<span class="">
-								<i class="fa fa-eye" aria-hidden="true"></i> Ver
-							</span>
-						</button>
+						@forelse($pro->imagenes as $foto)
+							<a href="{{ url("img/$foto->id.$foto->imagen") }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
+								<i class="fa fa-image"></i> {{ $foto->id }}
+							</a>
+						@empty
+							<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
+								<i class="fa fa-image"></i> Foto
+							</a>
+						@endforelse
 					</div>
 					<div class="col-sm-4">
 						<label for="nombre">Foto<span class="span_rojo">*</span></label>
-						<input id="file_input" type="file" class="file" data-preview-file-type="text" name="imagen">
+						<input id="file_input" type="file" class="file" data-preview-file-type="text" name="imagen[]" multiple="">
 					</div>
 
 					<div class="col-sm-6">
@@ -318,6 +319,11 @@
 			}
 		});
 	});
+
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
 
 </script>
 @endsection
