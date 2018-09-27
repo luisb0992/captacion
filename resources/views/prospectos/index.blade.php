@@ -46,30 +46,25 @@
 					<table class="table data-table table-bordered table-hover">
 						<thead class="label-danger">
 							<tr>
-								<th class="text-center">Titulo</th>
 								<th class="text-center">Codigo</th>
-								<th class="text-center">Tipo propiedad</th>
+								<th class="text-center">Titulo</th>
 								<th class="text-center">Precio</th>
-								<th class="text-center">Metros Tot</th>
 								<th class="text-center">Opcion</th>
 								<th class="text-center">Status</th>
 								<th class="text-center">Descargar</th>
-								<th class="text-center" style="width: 300px">Accion</th>
+								<th class="text-center" width="150px">Accion</th>
 							</tr>
 						</thead>
 						<tbody class="text-center">
 							@foreach($pros as $t)
 								<tr>
-									<td>{{$t->titulo}}</td>
 									<td class="well">{{$t->codigo}}</td>
-									<td>{{$t->tipo->name}}</td>
+									<td>{{$t->titulo}}</td>
+									<!-- <td>{{$t->tipo->name}}</td> -->
 									<td>
 										<span class="text-capitalize text-left">{{ $t->precio_des }}</span>
 										<br>
 										<span class="text-danger">{{ $t->precio_sol.' sol' }}</span> <span class="text-primary">@if($t->precio_dol) - {{ $t->precio_dol.' $' }} @endif</span>
-									</td>
-									<td>
-										<span>{{ $t->metros_tot }}</span>
 									</td>
 									<td>{{ $t->opcion }}</td>
 									<td class="well">{{ $t->status->name }}</td>
@@ -103,10 +98,12 @@
 											  </ul>
 										</div>
 										<a href="{{ route('prospectos.edit', $t->id) }}" class="btn btn-primary btn-sm">
-				                			<i class="fa fa-eye"></i> Ver y editar
+				                			<i class="fa fa-eye"></i> | <i class="fa fa-edit"></i> 
 				                		</a>
 				                		@if(\Auth::user()->perfil_id == 1)
-										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');"><i class="fa fa-remove"></i> Eliminar</a>
+										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');">
+											<i class="fa fa-remove"></i> 
+										</a>
 										@endif
 									</td>
 								</tr>

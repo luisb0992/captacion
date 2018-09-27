@@ -59,10 +59,10 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Estacionamientos <span class="span_rojo">*</span></label>	
-						<select name="estacionamientos" class="form-control" required="">
+						<label for="nombre">Estacionamientos</label>	
+						<select name="estacionamientos" class="form-control">
 							<option value="">Seleccione...</option>
-							@for($e = 1; $e <= 12; $e++)
+							@for($e = 0; $e <= 12; $e++)
 							<option value="{{ $e }}" @if($e == $pro->estacionamientos) selected @endif>{{ $e }}</option>
 							@endfor
 						</select>
@@ -100,7 +100,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">M2 Totales<span class="span_rojo">*</span></label>
+						<label for="nombre">Metros de terreno</label>
 						<input type="text" name="metros_tot" class="form-control int" required="" value="{{ $pro->metros_tot }}">
 						<br>
 					</div>
@@ -118,8 +118,8 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Codigo postal<span class="span_rojo">*</span></label>
-						<input type="text" name="codigo_postal" class="form-control int" required="" value="{{ $pro->codigo_postal }}">
+						<label for="nombre">Codigo postal</label>
+						<input type="text" name="codigo_postal" class="form-control int" value="{{ $pro->codigo_postal }}">
 						<br>
 					</div>
 
@@ -207,7 +207,7 @@
 						<br>
 						@forelse($pro->imagenes as $foto)
 							<a href="{{ url("img/$foto->id.$foto->imagen") }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-								<i class="fa fa-image"></i> {{ $foto->id }}
+								<i class="fa fa-image"></i> {{ $loop->index+1 }}
 							</a>
 						@empty
 							<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
@@ -216,7 +216,7 @@
 						@endforelse
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Foto<span class="span_rojo">*</span></label>
+						<label for="nombre">Foto<span class="span_rojo">*</span></label>(tamaño max 8MB, solo 3 imagenes)
 						<input id="file_input" type="file" class="file" data-preview-file-type="text" name="imagen[]" multiple="">
 					</div>
 
@@ -241,7 +241,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Email<span class="span_rojo">*</span></label>
+						<label for="nombre">Email</label>
 						<input  type="email" class="form-control" name="email" value="{{ $pro->persona->email }}">
 					</div>
 

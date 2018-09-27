@@ -84,31 +84,37 @@ class ProspectosController extends Controller
 
         if($pros->save()){
 
-            for ($i = 0; $i < count($request->imagen); $i++) {
-              $ext = $request->imagen[$i]->extension();
-              $imagen = new Imagen;
-              $imagen->prospecto_id = $pros->id;
-              $imagen->imagen = $request->imagen[$i]->extension();
-              $imagen->save();
-              $request->imagen[$i]->storeAs('images',"$imagen->id.$ext");
-            }
-
             $per = new Persona;
             $per->fill($request->all());
             $per->prospecto_id = $pros->id;
-            $per->save();
-            return redirect("prospectos")->with([
-                'flash_message' => 'Registrado correctamente.',
-                'flash_class' => 'alert-success'
-            ]);
-        }else{
-            return redirect("prospectos")->with([
-                'flash_message' => 'Ha ocurrido un error.',
-                'flash_class' => 'alert-danger',
-                'flash_important' => true
-            ]);
-        }
 
+            if ($per->save()) {
+              for ($i = 0; $i < count($request->imagen); $i++) {
+                $has = $request->imagen[$i]->isValid();
+                if ($has) {
+                  $ext = $request->imagen[$i]->extension();
+                  $imagen = new Imagen;
+                  $imagen->prospecto_id = $pros->id;
+                  $imagen->imagen = $request->imagen[$i]->extension();
+                  if ($imagen->save()) {
+                    $request->imagen[$i]->storeAs('images',"$imagen->id.$ext");
+                  }
+                }
+              }
+
+              return redirect("prospectos")->with([
+                  'flash_message' => 'Registrado correctamente.',
+                  'flash_class' => 'alert-success'
+              ]);
+
+            }else{
+              return redirect("prospectos")->with([
+                  'flash_message' => 'Ha ocurrido un error.',
+                  'flash_class' => 'alert-danger',
+                  'flash_important' => true
+              ]);
+          }
+        }
     }
 
     /**

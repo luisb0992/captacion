@@ -147,7 +147,7 @@ class RedesController extends Controller
         $save->user_id = \Auth::user()->id;
         $save->red_id = $request->red_id;
         $save->fecha = date("d-m-Y");
-        $save->hora = date("h:m a");
+        $save->hora = date("H:i A");
         $save->save();
 
         return response()->json($save);
