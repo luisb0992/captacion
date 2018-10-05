@@ -159,7 +159,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Futuros clientes</span>
+                <span>Interesados x facebook</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -215,7 +215,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Futuros clientes</span>
+                <span>Interesados x facebook</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
