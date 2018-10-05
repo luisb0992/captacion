@@ -13,4 +13,8 @@ class Provincia extends Model
     public function departamento(){
       return $this->belongsTo("App\Departamento", "departamento_id");
     }
+
+    public function distritos(){
+      return $this->hasMany("App\Distrito", "provincia_id");
+    }
 }

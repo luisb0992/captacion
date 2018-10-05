@@ -53,6 +53,7 @@
 									<td>{{ $red->provincia }}</td>
 									<td>{{ $red->descripcion }}</td>
 									<td>
+										@if(Auth::user()->perfil_id == 1)
 										<form class="" action="{{ route('redes.destroy', $red->id) }}" method="POST">
 											{{ method_field( 'DELETE' ) }}
               								{{ csrf_field() }}
@@ -60,6 +61,9 @@
               									<i class="fa fa-trash"></i>
               								</button>
 										</form>
+										@else
+										<span>(ninguna)</span>
+										@endif
 									</td>
 								</tr>
 							@endforeach

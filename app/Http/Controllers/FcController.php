@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\FuturoCliente;
 use App\User;
 use App\Persona;
+use App\TipoInmueble;
 
 class FcController extends Controller
 {
@@ -36,7 +37,8 @@ class FcController extends Controller
      */
     public function create()
     {
-        return view("fc.create");
+        $tipos = TipoInmueble::all();
+        return view("fc.create",[ "tipos" => $tipos ]);
     }
 
     /**
@@ -51,6 +53,8 @@ class FcController extends Controller
         $fc->status = $request->status;
         $fc->opcion = $request->opcion;
         $fc->comentario = $request->comentario;
+        $fc->distrito = $request->distrito;
+        $fc->tipo_id = $request->tipo_id;
         $fc->user_id = \Auth::user()->id;
 
         if($fc->save()){

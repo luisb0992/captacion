@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
   Route::get('fc/pdf/{id}','FcController@pdf')->name('fc_pdf');
   Route::get('fc/eliminar/{id}','FcController@eliminar')->name('fc.eliminar');
 
+  // ubicaciones
+  Route::resource('ubi','UbicacionesController');
 	//departamentos, provincias y distritos
 	Route::resource('departamentos','DepartamentoController');
 	Route::resource('provincias','ProvinciaController');

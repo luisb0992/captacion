@@ -120,10 +120,29 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Ver usuarios</a></li>
                 <li><a href="{{ route('users.create') }}"><i class="fa fa-circle-o"></i>Agregar usuario</a></li>
-                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Redes Sociales</a></li>
-                @if(\Auth::user()->perfil_id == 1)
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Redes sociales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
                 <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
-                @endif
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-location-arrow"></i>
+                <span>Ubicaciones</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('ubi.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
               </ul>
             </li>
 
@@ -169,6 +188,18 @@
 
             @elseif(\Auth::user()->perfil_id == 2)
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Redes sociales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
+                <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
+              </ul>
+            </li>
+
             <!-- Prospectos -->
             <li class="treeview">
               <a href="#">
@@ -179,7 +210,6 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
                 <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
-                <!-- <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li> -->
               </ul>
             </li>
 
@@ -210,6 +240,18 @@
             </li>
 
             @elseif(\Auth::user()->perfil_id == 3)
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Redes sociales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
+                <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
+              </ul>
+            </li>
 
             <!-- futuros clientes -->
             <li class="treeview">

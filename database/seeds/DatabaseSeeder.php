@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoInmuebleTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(UnidadTableSeeder::class);
+        $this->call(Departamento::class);
+        $this->call(Provincia::class);
+        $this->call(Distrito::class);
 
         App\User::create([
           'name'   => 'Admin',

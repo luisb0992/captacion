@@ -54,8 +54,8 @@
 								<tr>
 									<td>{{ $t->persona->name }}</td>
 									<td>{{ $t->user->name }} / {{ $t->opcion }}</td>
-									<td>{{ $t->comentario }}</td>
-									<td>{{ $t->comentario }}</td>
+									<td>{{ $t->tipo->name }}</td>
+									<td>{{ $t->distrito }}</td>
 									<td>{{ $t->comentario }}</td>
 									<td class="well">{{ $t->status }}</td>
 									<td>

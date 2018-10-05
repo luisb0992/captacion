@@ -24,6 +24,13 @@ class CreateFuturoClientesTable extends Migration
 
             $table->string('nombre_captador')->nullable();
             $table->string('nombre_peru')->nullable();
+            $table->integer('tipo_id')->unsigned();
+            $table->foreign('tipo_id')
+                    ->references('id')
+                    ->on('tipos_inmuebles')
+                    ->onDelete('cascade');
+
+            $table->string('distrito')->nullable();
             $table->string('opcion')->nullable();
             $table->string('status')->nullable();
             $table->text('comentario')->nullable();

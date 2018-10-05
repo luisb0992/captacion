@@ -69,6 +69,21 @@
 					</div>
 
 					<div class="col-sm-4">
+						<label for="nombre">Tipo de inmueble<span class="span_rojo">*</span></label>
+						<select name="tipo_id" class="form-control" required="">
+							@foreach($tipos as $t)
+							<option value="{{ $t->id }}">{{ $t->name }}</option>
+							@endforeach
+						</select>
+						<br>
+					</div>
+
+					<div class="col-sm-4">
+						<label for="nombre">Distrito<span class="span_rojo">*</span></label>
+						<input  type="text" class="form-control" name="distrito" required>
+					</div>
+
+					<div class="col-sm-8">
 						<label for="nombre">Comentario</label>
 						<textarea name="comentario" class="form-control" cols="30" rows="5"></textarea>
 					</div>
