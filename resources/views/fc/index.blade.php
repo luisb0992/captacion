@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Futuros Clientes - '.config('app.name'))
-@section('header','Futuros Clientes')
+@section('title','Interesados - '.config('app.name'))
+@section('header','Interesados')
 @section('breadcrumb')
 	<ol class="breadcrumb">
 	  <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
-	  <li class="active"> Futuros Clientes </li>
+	  <li class="active"> Interesados </li>
 	</ol>
 @endsection
 @section('content')
@@ -16,7 +16,7 @@
         <span class="info-box-icon bg-red"><i class="fa fa-list-alt"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Futuros Clientes</span>
+          <span class="info-box-text">Interesados</span>
           <span class="info-box-number">{{ $fc->count() }}</span>
         </div>
         <!-- /.info-box-content -->
@@ -35,7 +35,7 @@
 		      </div>
 	      	<div class="box-body">
 					<div class="col-sm-12 bg-danger">
-						<h3>Mis F.Clientes</h3>
+						<h3>Mis Interesados x facebook</h3>
 					</div>
 					<table class="table data-table table-bordered table-hover">
 						<thead class="label-danger">

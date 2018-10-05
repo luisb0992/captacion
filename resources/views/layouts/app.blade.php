@@ -13,8 +13,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/AdminLTE.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/glyphicons.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/datatables/dataTables.bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/Responsive-2.2.2/css/responsive.dataTables.min.css') }}"/>
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
@@ -201,7 +201,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Futuros clientes</span>
+                <span>Interesados x facebook</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -256,12 +256,10 @@
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script type="text/javascript" src="{{asset('js/app.min.js')}}"></script>
+
     <!-- Data table -->
-    <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-
-    <script type="text/javascript" src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
-
-    <script type="text/javascript" src="{{ asset('plugins/datatables/extensions/Responsive/js/dataTables.responsive.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/Responsive-2.2.2/js/dataTables.responsive.min.js') }}"></script>
 
     <script src="{{ asset('plugins/jquery_datepicker/jquery-ui.js') }}"></script>
 
@@ -289,11 +287,12 @@
       	//activar Datatable
         $('.data-table').DataTable({
           responsive: true,
-          language: {
-          	url:'{{asset("plugins/datatables/spanish.json")}}'
-          }
+          order:[0],
+           language: {
+              url:'{{asset("DataTables/spanish.json")}}'
+           }
         });
-      })
+
 
       // datapicker español
        	$.datepicker.regional['es'] = {
@@ -375,7 +374,7 @@
 
       $('.numero').numeric();
       $(".int").numeric({ decimal: false, negative: false }, function() { alert("Solo numeros"); this.value = ""; this.focus(); });
-
+      })
     </script>
 
     @yield('script')
