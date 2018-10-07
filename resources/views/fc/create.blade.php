@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Futuros Clientes - '.config('app.name'))
-@section('header','Futuros Clientes')
+@section('title','Interesados - '.config('app.name'))
+@section('header','Interesados')
 @section('breadcrumb')
 	<ol class="breadcrumb">
 	  <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
-	  <li><a href="{{route('fc.index')}}" title="Entrevistas"> Futuros Clientes</a></li>
+	  <li><a href="{{route('fc.index')}}" title="Entrevistas"> Interesados</a></li>
 	  <li class="active">Agregar</li>
 	</ol>
 @endsection
@@ -34,12 +34,12 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Nombre completo<span class="span_rojo">*</span></label>
-						<input  type="text" class="form-control" name="name">
+						<label for="nombre">Cliente<span class="span_rojo">*</span></label>
+						<input  type="text" class="form-control" name="name" required>
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Email<span class="span_rojo">*</span></label>
+						<label for="nombre">Email</label>
 						<input  type="email" class="form-control" name="email">
 					</div>
 
@@ -69,6 +69,21 @@
 					</div>
 
 					<div class="col-sm-4">
+						<label for="nombre">Tipo de inmueble<span class="span_rojo">*</span></label>
+						<select name="tipo_id" class="form-control" required="">
+							@foreach($tipos as $t)
+							<option value="{{ $t->id }}">{{ $t->name }}</option>
+							@endforeach
+						</select>
+						<br>
+					</div>
+
+					<div class="col-sm-4">
+						<label for="nombre">Distrito<span class="span_rojo">*</span></label>
+						<input  type="text" class="form-control" name="distrito" required>
+					</div>
+
+					<div class="col-sm-8">
 						<label for="nombre">Comentario</label>
 						<textarea name="comentario" class="form-control" cols="30" rows="5"></textarea>
 					</div>

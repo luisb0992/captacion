@@ -13,8 +13,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/AdminLTE.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/glyphicons.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/datatables/dataTables.bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/Responsive-2.2.2/css/responsive.dataTables.min.css') }}"/>
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
@@ -44,6 +44,14 @@
 			  padding: 20px;
 			  margin: 10px 25px;
 			}
+      .box-imagen:hover{
+        -webkit-transition:all .2s ease-in-out;
+        transition:all .2s ease-in-out;
+        display:inline-block;
+        -webkit-box-shadow: -1px 0px 35px -5px rgba(0,0,0,0.53);
+        -moz-box-shadow: -1px 0px 35px -5px rgba(0,0,0,0.53);
+        box-shadow: -1px 0px 35px -5px rgba(0,0,0,0.53);
+      }
 	  </style>
   </head>
   <body class="hold-transition skin-red sidebar-mini">
@@ -120,10 +128,29 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Ver usuarios</a></li>
                 <li><a href="{{ route('users.create') }}"><i class="fa fa-circle-o"></i>Agregar usuario</a></li>
-                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Redes Sociales</a></li>
-                @if(\Auth::user()->perfil_id == 1)
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Redes sociales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
                 <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
-                @endif
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-location-arrow"></i>
+                <span>Ubicaciones</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('ubi.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
               </ul>
             </li>
 
@@ -159,7 +186,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Futuros clientes</span>
+                <span>Interesados x facebook</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -169,6 +196,18 @@
 
             @elseif(\Auth::user()->perfil_id == 2)
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Redes sociales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
+                <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
+              </ul>
+            </li>
+
             <!-- Prospectos -->
             <li class="treeview">
               <a href="#">
@@ -179,7 +218,6 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
                 <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
-                <!-- <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li> -->
               </ul>
             </li>
 
@@ -201,7 +239,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Futuros clientes</span>
+                <span>Interesados x facebook</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -211,11 +249,23 @@
 
             @elseif(\Auth::user()->perfil_id == 3)
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Redes sociales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('redes.index') }}"><i class="fa fa-circle-o"></i>Listado</a></li>
+                <li><a href="{{ route('reporteClick') }}"><i class="fa fa-circle-o"></i>Reporte</a></li>
+              </ul>
+            </li>
+
             <!-- futuros clientes -->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Futuros clientes</span>
+                <span>Interesados x facebook</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -256,12 +306,10 @@
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script type="text/javascript" src="{{asset('js/app.min.js')}}"></script>
+
     <!-- Data table -->
-    <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-
-    <script type="text/javascript" src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
-
-    <script type="text/javascript" src="{{ asset('plugins/datatables/extensions/Responsive/js/dataTables.responsive.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/Responsive-2.2.2/js/dataTables.responsive.min.js') }}"></script>
 
     <script src="{{ asset('plugins/jquery_datepicker/jquery-ui.js') }}"></script>
 
@@ -289,11 +337,12 @@
       	//activar Datatable
         $('.data-table').DataTable({
           responsive: true,
-          language: {
-          	url:'{{asset("plugins/datatables/spanish.json")}}'
-          }
+          order:[0],
+           language: {
+              url:'{{asset("DataTables/spanish.json")}}'
+           }
         });
-      })
+
 
       // datapicker español
        	$.datepicker.regional['es'] = {
@@ -375,7 +424,7 @@
 
       $('.numero').numeric();
       $(".int").numeric({ decimal: false, negative: false }, function() { alert("Solo numeros"); this.value = ""; this.focus(); });
-
+      })
     </script>
 
     @yield('script')

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PDF Futuro Cliente</title>
+        <title>PDF Interesado</title>
        	<style>
 
 html {
@@ -8326,7 +8326,7 @@ button.close {
             <div class="row">
                 <div class="col-sm-12">
                 	<h1 class="page-header text-center" style="border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
-                    <span class="text-capitalize">Futuro Cliente</span>
+                    <span class="text-capitalize">Interesado por Facebook</span>
                   </h1>
                   <p>
                     <span class="text-left">

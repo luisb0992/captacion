@@ -44,6 +44,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Illuminate\Http\Exceptions\PostTooLargeException){
+            return redirect("prospectos")->with([
+                'flash_message' => 'El tamaño de las imagenes supero el limite (maximo permitido 8MB)',
+                'flash_class' => 'alert-warning'
+            ]);
+        }
+    
         return parent::render($request, $exception);
     }
 

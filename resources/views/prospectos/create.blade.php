@@ -9,6 +9,20 @@
 	</ol>
 @endsection
 @section('content')
+		@include('partials.flash')
+
+		@if (count($errors) > 0)
+		<div class="col-sm-12">
+          <div class="alert alert-danger alert-important">
+	          <ul>
+	            @foreach($errors->all() as $error)
+	              <li>{{$error}}</li>
+	            @endforeach
+	          </ul>  
+          </div>
+        </div> 
+        @endif
+
 		<!-- Formulario -->
 		<div class="fondo_blanco">
 			<div class="row padding_1em">
@@ -48,8 +62,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>	
 						<select name="dormitorios" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($i = 1; $i <= 12; $i++)
+							@for($i = 0; $i <= 12; $i++)
 							<option value="{{ $i }}">{{ $i }}</option>
 							@endfor
 						</select>
@@ -57,10 +70,9 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Estacionamientos <span class="span_rojo">*</span></label>	
-						<select name="estacionamientos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($e = 1; $e <= 12; $e++)
+						<label for="nombre">Estacionamientos </label>	
+						<select name="estacionamientos" class="form-control">
+							@for($e = 0; $e <= 12; $e++)
 							<option value="{{ $e }}">{{ $e }}</option>
 							@endfor
 						</select>
@@ -68,8 +80,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>	
 						<select name="b_completos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($b = 1; $b <= 12; $b++)
+							@for($b = 0; $b <= 12; $b++)
 							<option value="{{ $b }}">{{ $b }}</option>
 							@endfor
 						</select>
@@ -77,8 +88,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Medio baño</label>	
 						<select name="b_medio" class="form-control">
-							<option value="">Seleccione...</option>
-							@for($bm = 1; $bm <= 12; $bm++)
+							@for($bm = 0; $bm <= 12; $bm++)
 							<option value="{{ $bm }}">{{ $bm }}</option>
 							@endfor
 						</select>
@@ -98,7 +108,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">M2 Totales<span class="span_rojo">*</span></label>
+						<label for="nombre">Metros de terreno<span class="span_rojo">*</span></label>
 						<input type="text" name="metros_tot" class="form-control int" required="">
 						<br>
 					</div>
@@ -116,8 +126,8 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Codigo postal<span class="span_rojo">*</span></label>
-						<input type="text" name="codigo_postal" class="form-control int" required="">
+						<label for="nombre">Codigo postal</label>
+						<input type="text" name="codigo_postal" class="form-control int">
 						<br>
 					</div>
 
@@ -194,7 +204,7 @@
 					</div>
 
 					<div class="col-sm-6">
-						<label for="nombre">Foto<span class="span_rojo">*</span></label>(seleccione uno o varias imagenes para subir)
+						<label for="nombre">Foto<span class="span_rojo">*</span></label>(tamaño max 8MB, solo 3 imagenes)
 						<input id="file_input" type="file" data-preview-file-type="text" name="imagen[]" multiple="">
 					</div>
 
@@ -218,7 +228,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Email<span class="span_rojo">*</span></label>
+						<label for="nombre">Email</label>
 						<input  type="email" class="form-control" name="email">
 					</div>
 
@@ -246,18 +256,6 @@
 							@endforeach
 						</select>
 					</div>
-
-					@if (count($errors) > 0)
-					<div class="col-sm-12">
-			          <div class="alert alert-danger alert-important">
-				          <ul>
-				            @foreach($errors->all() as $error)
-				              <li>{{$error}}</li>
-				            @endforeach
-				          </ul>  
-			          </div>
-			        </div> 
-			        @endif
 					
 					<div class="col-sm-12 text-right">
 					<hr>

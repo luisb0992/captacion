@@ -8,7 +8,7 @@ class FuturoCliente extends Model
 {
     protected $table = "futuros_clientes";
 
-    protected $fillable = ["user_id", "nombre_captador", "nombre_peru", "opcion", "comentario"];
+    protected $fillable = ["user_id", "nombre_captador", "nombre_peru", "opcion", "comentario", "distrito", "tipo_id"];
 
     public function user(){
     	return $this->belongsTo("App\User", "user_id");
@@ -16,6 +16,10 @@ class FuturoCliente extends Model
 
     public function persona(){
     	return $this->hasOne("App\Persona", "ft_id");
+    }
+
+    public function tipo(){
+    	return $this->belongsTo("App\TipoInmueble", "tipo_id");
     }
 
     // metodos

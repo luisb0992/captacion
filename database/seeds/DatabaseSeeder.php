@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoInmuebleTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(UnidadTableSeeder::class);
+        $this->call(Departamento::class);
+        $this->call(Provincia::class);
+        $this->call(Distrito::class);
 
         App\User::create([
           'name'   => 'Admin',
@@ -23,6 +26,9 @@ class DatabaseSeeder extends Seeder
           'email'     => 'admin@admin.com',
           'password'  => bcrypt('admin'),
           'perfil_id'  => '1',
+          'departamento_id'  => '1',
+          'provincia_id'  => '1',
+          'distrito_id'  => '1',
           'status'  => '1'
         ]);
 

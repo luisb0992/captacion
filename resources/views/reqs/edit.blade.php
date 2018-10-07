@@ -51,8 +51,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>	
 						<select name="dormitorios" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($i = 1; $i <= 12; $i++)
+							@for($i = 0; $i <= 12; $i++)
 							<option value="{{ $i }}" @if($i == $r->dormitorios) selected @endif>{{ $i }}</option>
 							@endfor
 						</select>
@@ -62,8 +61,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Estacionamientos <span class="span_rojo">*</span></label>	
 						<select name="estacionamientos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($e = 1; $e <= 12; $e++)
+							@for($e = 0; $e <= 12; $e++)
 							<option value="{{ $e }}" @if($e == $r->estacionamientos) selected @endif>{{ $e }}</option>
 							@endfor
 						</select>
@@ -71,8 +69,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>	
 						<select name="b_completos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($b = 1; $b <= 12; $b++)
+							@for($b = 0; $b <= 12; $b++)
 							<option value="{{ $b }}" @if($b == $r->b_completos) selected @endif>{{ $b }}</option>
 							@endfor
 						</select>
@@ -80,8 +77,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Medio baño</label>	
 						<select name="b_medio" class="form-control">
-							<option value="">Seleccione...</option>
-							@for($bm = 1; $bm <= 12; $bm++)
+							@for($bm = 0; $bm <= 12; $bm++)
 							<option value="{{ $bm }}" @if($bm == $r->b_medio) selected @endif>{{ $bm }}</option>
 							@endfor
 						</select>

@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	Route::resource('prospectos','ProspectosController');
 	Route::get('prospectos/pdf/{id}','ProspectosController@pdf')->name('p_pdf');
 	Route::get('prospectos/eliminar/{id}','ProspectosController@eliminar')->name('pros.eliminar');
+	Route::get('fotos/{id}','ProspectosController@imagenes')->name('imagenes');
+	Route::post('moreImg/{id}','ProspectosController@moreImg')->name('moreImg');
+	Route::post('deleteImg/{id}','ProspectosController@deleteImg')->name('deleteImg');
 
 	// requerimientos
 	Route::resource('req','RequerimientosController');
@@ -47,9 +50,11 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 
   // futuros clientes
   Route::resource('fc','FcController');
-  Route::get('fc/pdf/{id}','fcController@pdf')->name('fc_pdf');
-  Route::get('fc/eliminar/{id}','fcController@eliminar')->name('fc.eliminar');
+  Route::get('fc/pdf/{id}','FcController@pdf')->name('fc_pdf');
+  Route::get('fc/eliminar/{id}','FcController@eliminar')->name('fc.eliminar');
 
+  // ubicaciones
+  Route::resource('ubi','UbicacionesController');
 	//departamentos, provincias y distritos
 	Route::resource('departamentos','DepartamentoController');
 	Route::resource('provincias','ProvinciaController');

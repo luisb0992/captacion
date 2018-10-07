@@ -14,7 +14,7 @@
 			<div class="row padding_1em">
 				<form class="" action="{{ route('req.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
-					
+
 					<!-- datos personales -->
 					<div class="col-sm-12">
 						<section class="padding_1em label-danger">
@@ -24,9 +24,9 @@
 						</section>
 						<br>
 					</div>
-					
+
 					<div class="col-sm-4">
-						<label for="nombre">Tipo de inmueble <span class="span_rojo">*</span></label>	
+						<label for="nombre">Tipo de inmueble <span class="span_rojo">*</span></label>
 						<select name="tipo_id" class="form-control" required="">
 							<option value="">Seleccione...</option>
 							@foreach($tipos as $t)
@@ -46,10 +46,9 @@
 						</label>
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>	
+						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>
 						<select name="dormitorios" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($i = 1; $i <= 12; $i++)
+							@for($i = 0; $i <= 12; $i++)
 							<option value="{{ $i }}">{{ $i }}</option>
 							@endfor
 						</select>
@@ -57,28 +56,25 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Estacionamientos <span class="span_rojo">*</span></label>	
+						<label for="nombre">Estacionamientos <span class="span_rojo">*</span></label>
 						<select name="estacionamientos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($e = 1; $e <= 12; $e++)
+							@for($e = 0; $e <= 12; $e++)
 							<option value="{{ $e }}">{{ $e }}</option>
 							@endfor
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>	
+						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>
 						<select name="b_completos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($b = 1; $b <= 12; $b++)
+							@for($b = 0; $b <= 12; $b++)
 							<option value="{{ $b }}">{{ $b }}</option>
 							@endfor
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Medio baño</label>	
+						<label for="nombre">Medio baño</label>
 						<select name="b_medio" class="form-control">
-							<option value="">Seleccione...</option>
-							@for($bm = 1; $bm <= 12; $bm++)
+							@for($bm = 0; $bm <= 12; $bm++)
 							<option value="{{ $bm }}">{{ $bm }}</option>
 							@endfor
 						</select>
@@ -164,7 +160,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Email<span class="span_rojo">*</span></label>
+						<label for="nombre">Email</label>
 						<input  type="email" class="form-control" name="email">
 					</div>
 
@@ -175,7 +171,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Opcion<span class="span_rojo">*</span></label>	
+						<label for="nombre">Opcion<span class="span_rojo">*</span></label>
 						<select name="opcion" class="form-control" required="">
 							<option value="">Seleccione...</option>
 							<option value="Alquiler">Alquiler</option>
@@ -184,7 +180,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Status<span class="span_rojo">*</span></label>	
+						<label for="nombre">Status<span class="span_rojo">*</span></label>
 						<select name="status" class="form-control" required="">
 							<option value="caliente">Caliente</option>
 							<option value="tibio">Tibio</option>
@@ -194,7 +190,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Comentario</label>	
+						<label for="nombre">Comentario</label>
 						<textarea name="comentario" class="form-control" cols="30" rows="5"></textarea>
 					</div>
 
@@ -205,11 +201,11 @@
 				            @foreach($errors->all() as $error)
 				              <li>{{$error}}</li>
 				            @endforeach
-				          </ul>  
+				          </ul>
 			          </div>
-			        </div> 
+			        </div>
 			        @endif
-					
+
 					<div class="col-sm-12 text-right">
 					<hr>
 						<a class="btn btn-default" href="{{route('prospectos.index')}}">
@@ -221,7 +217,7 @@
 					</div>
 				</form>
 			</div>
-		</div>	
+		</div>
 @endsection
 @section("script")
 <script>

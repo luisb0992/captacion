@@ -32,7 +32,13 @@ class RedesController extends Controller
 
     public function reporteClick()
     {
-        $r = SaveClick::all();
+
+        if (\Auth::user()->perfil_id == 1) {
+      		$r = SaveClick::all();
+      	}else{
+      		$user = \Auth::user()->id;
+      		$r = SaveClick::where('user_id', $user)->get();
+      	}
         return view('redes.reportes',[
         	'reportes' => $r,
           'users' => User::all()
@@ -126,7 +132,7 @@ class RedesController extends Controller
     public function destroy($id)
     {
         $red = Red::findOrFail($id);
-        
+
         if($red->delete()){
             return redirect('redes')->with([
                 'flash_class'   => 'alert-success',
@@ -147,7 +153,7 @@ class RedesController extends Controller
         $save->user_id = \Auth::user()->id;
         $save->red_id = $request->red_id;
         $save->fecha = date("d-m-Y");
-        $save->hora = date("h:m a");
+        $save->hora = date("H:i A");
         $save->save();
 
         return response()->json($save);
