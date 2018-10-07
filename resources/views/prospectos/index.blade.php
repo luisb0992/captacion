@@ -91,10 +91,15 @@
 												@empty
 													<li>
 														<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-															<i class="fa fa-image"></i> 
+															Sin fotos
 														</a>
 													</li>
 												@endforelse
+													<li>
+														<a href="{{ route('imagenes', $t->id) }}" class="btn btn-default btn-sm">
+															<i class="fa fa-plus-square"></i> Añadir 
+														</a>
+													</li>
 											  </ul>
 										</div>
 										<a href="{{ route('prospectos.edit', $t->id) }}" class="btn btn-primary btn-sm">

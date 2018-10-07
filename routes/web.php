@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	Route::resource('prospectos','ProspectosController');
 	Route::get('prospectos/pdf/{id}','ProspectosController@pdf')->name('p_pdf');
 	Route::get('prospectos/eliminar/{id}','ProspectosController@eliminar')->name('pros.eliminar');
+	Route::get('fotos/{id}','ProspectosController@imagenes')->name('imagenes');
+	Route::post('moreImg/{id}','ProspectosController@moreImg')->name('moreImg');
+	Route::post('deleteImg/{id}','ProspectosController@deleteImg')->name('deleteImg');
 
 	// requerimientos
 	Route::resource('req','RequerimientosController');

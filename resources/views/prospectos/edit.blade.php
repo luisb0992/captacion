@@ -50,8 +50,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>	
 						<select name="dormitorios" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($i = 1; $i <= 12; $i++)
+							@for($i = 0; $i <= 12; $i++)
 							<option value="{{ $i }}" @if($i == $pro->dormitorios) selected @endif>{{ $i }}</option>
 							@endfor
 						</select>
@@ -61,7 +60,6 @@
 					<div class="col-sm-4">
 						<label for="nombre">Estacionamientos</label>	
 						<select name="estacionamientos" class="form-control">
-							<option value="">Seleccione...</option>
 							@for($e = 0; $e <= 12; $e++)
 							<option value="{{ $e }}" @if($e == $pro->estacionamientos) selected @endif>{{ $e }}</option>
 							@endfor
@@ -70,8 +68,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>	
 						<select name="b_completos" class="form-control" required="">
-							<option value="">Seleccione...</option>
-							@for($b = 1; $b <= 12; $b++)
+							@for($b = 0; $b <= 12; $b++)
 							<option value="{{ $b }}" @if($b == $pro->b_completos) selected @endif>{{ $b }}</option>
 							@endfor
 						</select>
@@ -79,8 +76,7 @@
 					<div class="col-sm-4">
 						<label for="nombre">Medio baño</label>	
 						<select name="b_medio" class="form-control">
-							<option value="">Seleccione...</option>
-							@for($bm = 1; $bm <= 12; $bm++)
+							@for($bm = 0; $bm <= 12; $bm++)
 							<option value="{{ $bm }}" @if($bm == $pro->b_medio) selected @endif>{{ $bm }}</option>
 							@endfor
 						</select>
@@ -201,26 +197,8 @@
 						<input type="text" name="titulo" class="form-control" required="" placeholder="ej: Departamento de lujo, unico dueño" value="{{ $pro->titulo }}">
 						<br>
 					</div>
-					
-					<div class="col-sm-2">
-						<label for="">Foto actual</label>
-						<br>
-						@forelse($pro->imagenes as $foto)
-							<a href="{{ url("img/$foto->id.$foto->imagen") }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-								<i class="fa fa-image"></i> {{ $loop->index+1 }}
-							</a>
-						@empty
-							<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-								<i class="fa fa-image"></i> Foto
-							</a>
-						@endforelse
-					</div>
-					<div class="col-sm-4">
-						<label for="nombre">Foto<span class="span_rojo">*</span></label>(tamaño max 8MB, solo 3 imagenes)
-						<input id="file_input" type="file" class="file" data-preview-file-type="text" name="imagen[]" multiple="">
-					</div>
 
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<label for="nombre">Descripcion<span class="span_rojo">*</span></label>
 						<textarea name="descripcion" class="form-control">{{ $pro->descripcion }}</textarea>
 						<br>

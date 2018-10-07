@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Storage;
 use App\Prospecto;
 use App\Status;
 use App\Departamento;
@@ -32,6 +33,49 @@ class ProspectosController extends Controller
         return view("prospectos.index",[
             "pros" => $pros
         ]);
+    }
+
+    public function imagenes($id)
+    {
+        $prospecto = Prospecto::findOrFail($id);
+        return view("prospectos.imagenes",[
+            "prospecto" => $prospecto
+        ]);
+    }
+
+    public function moreImg(Request $request, $id)
+    {
+        // dd($request->all());
+        if ($request->imagen) {
+              // recorremos
+              for ($i = 0; $i < count($request->imagen); $i++) {
+                // eliminamos antes de guardar las nuevas
+                $ext = $request->imagen[$i]->extension();
+                $imagen = new Imagen;
+                $imagen->prospecto_id = $id;
+                $imagen->imagen = $request->imagen[$i]->extension();
+                $imagen->save();
+                $request->imagen[$i]->storeAs('images',"$imagen->id.$ext");
+              }
+
+              return redirect("prospectos")->with([
+                'flash_message' => 'Fotos añadidas correctamente.',
+                'flash_class' => 'alert-success'
+              ]);
+        }else{
+              return redirect("prospectos")->with([
+                'flash_message' => 'Cambios guardados.',
+                'flash_class' => 'alert-success'
+              ]);    
+        }
+    }
+
+    public function deleteImg($id)
+    {
+        $img = Imagen::find($id);
+        $sto = Storage::delete("images/$id.$img->imagen");
+        $delete = Imagen::destroy($id);
+        return response()->json($sto);
     }
 
     /**
@@ -177,23 +221,6 @@ class ProspectosController extends Controller
         $pros->fill($request->all());
 
         if($pros->save()){
-            
-            // si existe la imagen procedemos a eliminar y guardar nuevamente
-            if ($request->imagen) {
-              Imagen::where("prospecto_id", $id)->delete();
-
-              // recorremos
-              for ($i = 0; $i < count($request->imagen); $i++) {
-
-                // eliminamos antes de guardar las nuevas
-                $ext = $request->imagen[$i]->extension();
-                $imagen = new Imagen;
-                $imagen->prospecto_id = $pros->id;
-                $imagen->imagen = $request->imagen[$i]->extension();
-                $imagen->save();
-                $request->imagen[$i]->storeAs('images',"$imagen->id.$ext");
-              }
-            }
 
             $per = Persona::find($request->per_id);
             $per->fill($request->all());

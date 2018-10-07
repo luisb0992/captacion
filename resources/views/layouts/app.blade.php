@@ -44,6 +44,14 @@
 			  padding: 20px;
 			  margin: 10px 25px;
 			}
+      .box-imagen:hover{
+        -webkit-transition:all .2s ease-in-out;
+        transition:all .2s ease-in-out;
+        display:inline-block;
+        -webkit-box-shadow: -1px 0px 35px -5px rgba(0,0,0,0.53);
+        -moz-box-shadow: -1px 0px 35px -5px rgba(0,0,0,0.53);
+        box-shadow: -1px 0px 35px -5px rgba(0,0,0,0.53);
+      }
 	  </style>
   </head>
   <body class="hold-transition skin-red sidebar-mini">
