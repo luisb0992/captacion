@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Prospectos - '.config('app.name'))
-@section('header','Prospectos')
+@section('title','Inmueble captados - '.config('app.name'))
+@section('header','Inmueble captados')
 @section('breadcrumb')
 	<ol class="breadcrumb">
 	  <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
-	  <li class="active"> Prospectos </li>
+	  <li class="active"> Inmueble captados </li>
 	</ol>
 @endsection
 @section('content')
@@ -16,7 +16,7 @@
         <span class="info-box-icon bg-red"><i class="fa fa-list-alt"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Prospectos</span>
+          <span class="info-box-text">Inmueble captados</span>
           <span class="info-box-number">{{ $pros->count() }}</span>
         </div>
         <!-- /.info-box-content -->
@@ -33,7 +33,7 @@
     	<div class="box box-danger">
 	      <div class="box-header with-border">
 	        <span class="pull-left">
-				<a href="{{ route('prospectos.create') }}" class="btn btn-danger"><i class="fa fa-plus" aria-hidden="true"></i> Nueva</a>
+				<a href="{{ route('prospectos.create') }}" class="btn btn-danger"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</a>
 			</span>
 	      </div>
       	<div class="box-body">
@@ -41,13 +41,14 @@
 						<i class="fa fa-refresh fa-spin fa-3x fa-fw text-success"></i>
 					</div>
 					<div class="col-sm-12 bg-danger">
-						<h3>Mis Prospectos de inmuebles</h3>
+						<h3>Mis inmuebles captados</h3>
 					</div>
 					<table class="table data-table table-bordered table-hover">
 						<thead class="label-danger">
 							<tr>
 								<th class="text-center">Codigo</th>
 								<th class="text-center">Titulo</th>
+								<th class="text-center">Distrito</th>
 								<th class="text-center">Precio</th>
 								<th class="text-center">Opcion</th>
 								<th class="text-center">Status</th>
@@ -60,6 +61,7 @@
 								<tr>
 									<td class="well">{{$t->codigo}}</td>
 									<td>{{$t->titulo}}</td>
+									<td>{{$t->distrito->distrito}}</td>
 									<!-- <td>{{$t->tipo->name}}</td> -->
 									<td>
 										<span class="text-capitalize text-left">{{ $t->precio_des }}</span>
@@ -76,7 +78,7 @@
 											</button>
 										</form>
 									</td>
-									<td>	
+									<td>
 										<div class="btn-group">
 											  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											    <i class="fa fa-image"></i> <span class="caret"></span>
@@ -97,17 +99,17 @@
 												@endforelse
 													<li>
 														<a href="{{ route('imagenes', $t->id) }}" class="btn btn-default btn-sm">
-															<i class="fa fa-plus-square"></i> Añadir 
+															<i class="fa fa-plus-square"></i> Añadir
 														</a>
 													</li>
 											  </ul>
 										</div>
 										<a href="{{ route('prospectos.edit', $t->id) }}" class="btn btn-primary btn-sm">
-				                			<i class="fa fa-eye"></i> | <i class="fa fa-edit"></i> 
+				                			<i class="fa fa-eye"></i> | <i class="fa fa-edit"></i>
 				                		</a>
 				                		@if(\Auth::user()->perfil_id == 1)
 										<a href="{{ route('pros.eliminar',$t->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Desea eliminar S/N?');">
-											<i class="fa fa-remove"></i> 
+											<i class="fa fa-remove"></i>
 										</a>
 										@endif
 									</td>

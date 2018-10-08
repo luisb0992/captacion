@@ -158,12 +158,12 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Prospectos</span>
+                <span>Inmuebles captados</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
-                <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
+                <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo inmueble</a></li>
+                <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver inmueble</a></li>
                 <!-- <li><a href=""><i class="fa fa-circle-o"></i> Reporte</a></li> -->
               </ul>
             </li>
@@ -212,12 +212,12 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-list-alt"></i>
-                <span>Prospectos</span>
+                <span>Inmuebles captados</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo Prospecto</a></li>
-                <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver Prospectos</a></li>
+                <li><a href="{{ route('prospectos.create') }}"><i class="fa fa-circle-o"></i> Nuevo inmueble</a></li>
+                <li><a href="{{ route('prospectos.index') }}"><i class="fa fa-circle-o"></i> Ver inmueble</a></li>
               </ul>
             </li>
 

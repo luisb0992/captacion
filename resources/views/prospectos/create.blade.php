@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Prospecto - '.config('app.name'))
-@section('header','Prospecto')
+@section('title','Inmueble captado - '.config('app.name'))
+@section('header','Inmueble captado')
 @section('breadcrumb')
 	<ol class="breadcrumb">
 	  <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
-	  <li><a href="{{route('prospectos.index')}}" title="Entrevistas"> Prospectos</a></li>
+	  <li><a href="{{route('prospectos.index')}}" title="Entrevistas"> Inmueble captado</a></li>
 	  <li class="active">Agregar</li>
 	</ol>
 @endsection
@@ -18,9 +18,9 @@
 	            @foreach($errors->all() as $error)
 	              <li>{{$error}}</li>
 	            @endforeach
-	          </ul>  
+	          </ul>
           </div>
-        </div> 
+        </div>
         @endif
 
 		<!-- Formulario -->
@@ -28,7 +28,7 @@
 			<div class="row padding_1em">
 				<form class="" action="{{ route('prospectos.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
-					
+
 					<!-- datos personales -->
 					<div class="col-sm-12">
 						<section class="padding_1em label-danger">
@@ -38,9 +38,9 @@
 						</section>
 						<br>
 					</div>
-					
+
 					<div class="col-sm-4">
-						<label for="nombre">Tipo de inmueble <span class="span_rojo">*</span></label>	
+						<label for="nombre">Tipo de inmueble <span class="span_rojo">*</span></label>
 						<select name="tipo_id" class="form-control" required="">
 							<option value="">Seleccione...</option>
 							@foreach($tipos as $t)
@@ -60,7 +60,7 @@
 						</label>
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>	
+						<label for="nombre">Dormitorios <span class="span_rojo">*</span></label>
 						<select name="dormitorios" class="form-control" required="">
 							@for($i = 0; $i <= 12; $i++)
 							<option value="{{ $i }}">{{ $i }}</option>
@@ -70,7 +70,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Estacionamientos </label>	
+						<label for="nombre">Estacionamientos </label>
 						<select name="estacionamientos" class="form-control">
 							@for($e = 0; $e <= 12; $e++)
 							<option value="{{ $e }}">{{ $e }}</option>
@@ -78,7 +78,7 @@
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>	
+						<label for="nombre">Baños Completos<span class="span_rojo">*</span></label>
 						<select name="b_completos" class="form-control" required="">
 							@for($b = 0; $b <= 12; $b++)
 							<option value="{{ $b }}">{{ $b }}</option>
@@ -86,7 +86,7 @@
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<label for="nombre">Medio baño</label>	
+						<label for="nombre">Medio baño</label>
 						<select name="b_medio" class="form-control">
 							@for($bm = 0; $bm <= 12; $bm++)
 							<option value="{{ $bm }}">{{ $bm }}</option>
@@ -112,7 +112,7 @@
 						<input type="text" name="metros_tot" class="form-control int" required="">
 						<br>
 					</div>
-					
+
 					<div class="col-sm-12">
 						<section class="padding_1em bg-danger">
 							<span class="h5">Localizacion</span>
@@ -239,7 +239,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Opcion<span class="span_rojo">*</span></label>	
+						<label for="nombre">Opcion<span class="span_rojo">*</span></label>
 						<select name="opcion" class="form-control" required="">
 							<option value="">Seleccione...</option>
 							<option value="Alquiler">Alquiler</option>
@@ -248,7 +248,7 @@
 					</div>
 
 					<div class="col-sm-4">
-						<label for="nombre">Status<span class="span_rojo">*</span></label>	
+						<label for="nombre">Status<span class="span_rojo">*</span></label>
 						<select name="status_id" class="form-control" required="">
 							<option value="">Seleccione...</option>
 							@foreach($status as $sta)
@@ -256,7 +256,7 @@
 							@endforeach
 						</select>
 					</div>
-					
+
 					<div class="col-sm-12 text-right">
 					<hr>
 						<a class="btn btn-default" href="{{route('prospectos.index')}}">
@@ -268,7 +268,7 @@
 					</div>
 				</form>
 			</div>
-		</div>	
+		</div>
 @endsection
 @section("script")
 <script>

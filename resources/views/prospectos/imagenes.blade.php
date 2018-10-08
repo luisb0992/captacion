@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Prospectos/fotos - '.config('app.name'))
+@section('title','Inmueble captado/fotos - '.config('app.name'))
 @section('content')
 	@include('partials.flash')
 
@@ -27,7 +27,7 @@
 				<div class="col-sm-3">
 					<span>No posee fotos</span>
 					<a href="{{ asset('img/sin_imagen.jpg') }}" data-toggle="lightbox" data-max-width="600" id="img" class="btn btn-default btn-sm">
-						<img src="{{ url('img/sin_imagen.jpg') }}" alt="foto" class="img-responsive" style="max-height: 100px"> 
+						<img src="{{ url('img/sin_imagen.jpg') }}" alt="foto" class="img-responsive" style="max-height: 100px">
 					</a>
 				</div>
 			@endforelse
@@ -77,7 +77,7 @@
     	.always(function() {
     		console.log("complete");
     	});
-    	
+
     }
 </script>
 @endsection
